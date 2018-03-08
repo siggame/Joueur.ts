@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        // "lib": [ "es5", "es6", "es2015", "es2016", "es2017", "es2017.object" ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+
+        "strict": true,
+        "sourceMap": true,
+        "declaration": true,
+        "noUnusedLocals": true,
+        "allowSyntheticDefaultImports": true,
+
+        "outDir": "dist", // If you modify this be sure to update the `run` file(s)!
+        "baseUrl": "./",
+    },
+    "include": [
+        "node_modules/@types/**/*.d.ts",
+        "joueur/**/*.ts",
+        "joueur/**/*.d.ts",
+        "games/**/*.ts",
+        "games/**/*.d.ts",
+        "index.ts"
+    ]
+}

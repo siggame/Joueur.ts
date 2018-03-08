@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "tslint:recommended"
+    ],
+    "linterOptions": {
+        "exclude": [
+            // Ignore all the typescript files we made so you don't have to
+            // correct our linter errors you define above
+            "joueur/*"
+        ]
+    }
+}

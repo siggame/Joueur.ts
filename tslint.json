@@ -1,0 +1,18 @@
+{
+    "extends": [
+        "tslint:recommended"
+    ],
+    "rules": {
+        "new-parens": true,
+        "no-bitwise": true,
+        "import-spacing": true,
+        "no-unused-expression": [true, "allow-new"],
+        "object-literal-sort-keys": false,
+        "one-line": [true, "check-open-brace", "check-whitespace"],
+        "typedef": [ true,
+            "call-signature",
+            "parameter",
+            "property-declaration"
+        ]
+    }
+}

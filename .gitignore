@@ -29,5 +29,8 @@ node_modules
 # jsdoc output
 docs/output
 
+# ts transpiled files
+dist/
+
 # Vagrant files
 .vagrant/*

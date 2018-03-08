@@ -5,7 +5,8 @@ all:
 dependencies:
 	npm install
 
-core: ;
+core:
+	npm run build
 
 clean:
-	rm -rf ./node_modules
+	npm run clean
