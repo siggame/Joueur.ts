@@ -1,0 +1,10 @@
+{
+    "name": "TypeScript Client Docs",
+    "tsconfig": "./tsconfig.json",
+    "out": "./output",
+    "module": "esnext",
+    "exclude": "joueur/",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "externalPattern": "*"
+}

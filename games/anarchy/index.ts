@@ -13,6 +13,9 @@ import { PoliceDepartment } from "./police-department";
 import { Warehouse } from "./warehouse";
 import { WeatherStation } from "./weather-station";
 
+/**
+ * This is a collection of all the classes that Anarchy uses to work.
+ */
 export const namespace: IGameNamespace = {
     AI,
     Game,

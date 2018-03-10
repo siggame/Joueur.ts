@@ -8,6 +8,9 @@ import { Game } from "./game";
 import { ${game_obj_key} } from "./${hyphenate(game_obj_key)}";
 % endfor
 
+/**
+ * This is a collection of all the classes that ${game_name} uses to work.
+ */
 export const namespace: IGameNamespace = {
     AI,
     Game,

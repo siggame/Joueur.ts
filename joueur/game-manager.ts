@@ -10,72 +10,44 @@ export interface IServerConstants {
     DELTA_REMOVED: string;
 }
 
-// @class GameManager: basically state management. Competitors do not modify
+// @class GameManager: basically state management. Competitors do not modify.
 export class BaseGameManager {
+    /** constants used to parse delta merges */
     public serverConstants: IServerConstants = {
         DELTA_LIST_LENGTH: "",
         DELTA_REMOVED: "",
     };
 
-    // Allow until the first delta merge ends
-    private allowGameObjectSets = true;
-
-    // Map of game object ids to a mapping of their member values
-    private privateValues = new Map<BaseGameObject, {
-        [key: string]: Serializer.SerializableTypes;
-    }>();
-
-    // Sets up the game
+    /** Sets up the game manager. */
     public constructor(
+        /** The game this game manager controls. */
         private game: BaseGame,
-        private gameObjectClasses: { [className: string]: typeof BaseGameObject },
+        /**
+         * The game object class constructors to create new game objects from.
+         */
+        private gameObjectClasses: {
+            [className: string]: typeof BaseGameObject;
+        },
     ) {
         // Pass
     }
 
-    public getMemberValue(gameObject: BaseGameObject, memberName: string): any {
-        const privateValues = this.privateValues.get(gameObject);
-
-        if (!privateValues) {
-            throw new Error(`Cannot get private values for ${gameObject}`);
-        }
-
-        return privateValues[memberName];
-    }
-
-    public setMemberValue(gameObject: BaseGameObject, memberName: string, value: any): void {
-    // Check to make sure the AI is not trying to set a member value
-    // (this should only be called during _mergeDelta, in which case no error will be thrown)
-    if (!this.allowGameObjectSets) {
-      throw new Error(`Setting '${memberName}' not allowed! Member variables are read only to AIs.`);
-    }
-
-    let privateValues = this.privateValues.get(gameObject);
-
-    if (!privateValues) {
-      privateValues = {};
-      this.privateValues.set(gameObject, privateValues);
-    }
-
-    privateValues[memberName] = value;
-  }
-
     /**
-     * Applies a delta state (change in state information) to this game
+     * Applies a delta state (change in state information) to this game.
+     * @param delta The delta to merge into the game.
      */
     public applyDeltaState(delta: any): void {
-        this.allowGameObjectSets = true;
         if (delta.gameObjects !== undefined) {
             this.initGameObjects(delta.gameObjects);
         }
 
         this.mergeDelta(this.game, delta);
-        this.allowGameObjectSets = false;
     }
 
     /**
      * Game objects can be references in the delta states for cycles, they will
      * all point to the game objects here.
+     * @param ALl the game objects currently in the game, indexed by their ID.
      */
     private initGameObjects(gameObjects: { [ id: string ]: any }): void {
         for (const [id, gameObject] of Object.entries(gameObjects)) {
@@ -100,6 +72,9 @@ export class BaseGameManager {
 
     /**
      * Recursively merges delta changes to the game.
+     * @param state A state to merge from the `delta`.
+     * @param delta The delta to apply into the `state`.
+     * @returns The value we delta merged at this depth.
      */
     private mergeDelta(state: any, delta: any): any {
         const deltaLength: number | undefined = delta[this.serverConstants.DELTA_LIST_LENGTH];

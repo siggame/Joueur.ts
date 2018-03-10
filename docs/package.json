@@ -1,11 +1,16 @@
 {
-  "name": "Joueur.jsJSDocsScript",
+  "name": "joueur.ts.docs",
   "version": "0.0.1",
   "description": "Used by the python script to make docs",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jaguarjs-jsdoc": "JacobFischer/jaguarjs-jsdoc",
-    "jsdoc": "3.5.5"
+    "chalk": "^2.3.2",
+    "typedoc": "0.11.0",
+    "typedoc-plugin-external-module-name": "1.1.1",
+    "typedoc-plugin-internal-external": "1.0.10"
+  },
+  "scripts": {
+    "docs": "typedoc --options typedoc.json"
   }
 }

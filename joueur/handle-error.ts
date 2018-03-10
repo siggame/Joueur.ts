@@ -3,6 +3,7 @@ import { client } from "./client";
 
 // tslint:disable:only-arrow-functions typedef no-console no-any
 
+/** Program exit codes coresponding to errors the client could encounter. */
 export enum ErrorCode {
     NONE = 0,
     INVALID_ARGS = 20,
@@ -20,9 +21,27 @@ export enum ErrorCode {
     AI_ERRORED = 42,
 }
 
+/**
+ * Handles an error with just a message
+ * @param errorCode The error encountered.
+ * @param message The human readble message about the error.
+ */
 export function handleError(errorCode: ErrorCode, message: string): never;
-export function handleError(errorCode: ErrorCode, err: Error | string, message: string): never;
 
+/**
+ * Handles an error with a proper thrown error caught.
+ * @param errorCode The error encountered.
+ * @param err The Error caught that caused this to be invoked.
+ * @param message The human readble message about the error.
+ */
+export function handleError(errorCode: ErrorCode, err: Error | string, message?: string): never;
+
+/**
+ * Invoked when we encounter an unexpected error and must exit erronously
+ * @param errorCode The error encountered.
+ * @param err The Error caught that caused this to be invoked.
+ * @param message The human readble message about the error.
+ */
 export function handleError(errorCode: ErrorCode, err: Error | string, message?: string): never {
     let msg = message || "";
     if (msg === undefined && typeof(err) === "string") {

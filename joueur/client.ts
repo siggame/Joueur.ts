@@ -16,22 +16,50 @@ const EOT_CHAR = String.fromCharCode(4);
  * execute via TCP socket. Clients perform no game logic
  */
 export class Client {
+    /** The manager of the game. */
     public gameManager?: BaseGameManager;
 
+    /** The host name we are connected to. */
     private host = "";
+
+    /** If we should print network IO to the console. */
     private printIO = false;
+
+    /** Cached string awaiting and EOT_CHAR to parse into an event string. */
     private awaitingEOT = "";
+
+    /**
+     * String event names to a list of resolve promises to resolve when that
+     * event happens from the network.
+     */
     private awaitingEvents: {
         [event: string]: Array<(value: any) => void> | undefined;
     } = {};
 
+    /** If the client will resolve orders (if the AI has started). */
     private acceptingOrders = false;
+
+    /** Orders cached that will be fired once we are accepting orders. */
     private cachedOrders: any[] = [];
 
+    /** The net.Socket we use for network communication. */
     private socket?: Socket;
+
+    /** The game this client is playing. */
     private game?: BaseGame;
+
+    /** The AI this client is communicating on behalf of. */
     private ai?: BaseAI;
 
+    /**
+     * Connects this client to some remote game server
+     * @param host The host name to connect to.
+     * @param port The port to connect to.
+     * @param options An object of key/value options for the connection.
+     * @returns A promise that resolves if the connection is successful.
+     * If it is not the promise is **not** rejected. Instead the process
+     * exits.
+     */
     public connect(host: string, port: number, options: {
         printIO: boolean;
     }): Promise<void> {
@@ -73,6 +101,12 @@ export class Client {
         });
     }
 
+    /**
+     * Used to setup the client with its game related instances.
+     * @param ai The AI this client will control.
+     * @param game The Game this client will control.
+     * @param gameManager The GameManager this client will control.
+     */
     public setup(
         ai: BaseAI,
         game: BaseGame,
@@ -83,6 +117,11 @@ export class Client {
         this.gameManager = gameManager;
     }
 
+    /**
+     * Sends an event with data to the game server.
+     * @param event The name of the event to send
+     * @param data Optional data to send with the event.
+     */
     public send(event: string, data: any): void {
         this.sendRaw(
             JSON.stringify({
@@ -93,6 +132,14 @@ export class Client {
         );
     }
 
+    /**
+     * Runs some game logic on the game server on behalf of a game object.
+     * @param caller The game object calling the function.
+     * @param functionName The name of the function to run for the caller.
+     * @param args An object of key/values as parameters for the function.
+     * @returns A promise that eventually resolves when the run logic has been
+     * ran with the "return" value.
+     */
     public async runOnServer(caller: BaseGameObject, functionName: string, args: {
         [key: string]: any;
     }): Promise<any> {
@@ -106,15 +153,23 @@ export class Client {
         return Serializer.deSerialize(ranData, this.game!);
     }
 
+    /** Waits for the named event to resolve with the actual game name. */
     public waitForEvent(event: "named"): Promise<string>;
+
+    /** Waits for the start event with our player's ID. */
     public waitForEvent(event: "start"): Promise<{ playerID: string; }>;
+
+    /** Waits for the lobbied event which contains game information. */
     public waitForEvent(event: "lobbied"): Promise<{
         gameName: string;
         gameSession: string;
         constants: IServerConstants;
     }>;
+
+    /** Waits for a ran event to resolve our run commands. */
     public waitForEvent(event: "ran"): Promise<any>;
 
+    /** Waits for an event to resolve something. */
     public waitForEvent(event: string): Promise<any> {
         return new Promise((resolve, reject) => {
             if (!this.awaitingEvents[event]) {
@@ -125,6 +180,9 @@ export class Client {
         });
     }
 
+    /**
+     * Invoked to disconnect this client from the game server (if connected).
+     */
     public disconnect(): void {
         if (this.socket) {
             try {
@@ -140,6 +198,9 @@ export class Client {
         }
     }
 
+    /**
+     * Invoked to start accepting orders for the AI.
+     */
     public acceptOrders(): void {
         this.acceptingOrders = true;
         for (const order of this.cachedOrders) {
@@ -147,6 +208,10 @@ export class Client {
         }
     }
 
+    /**
+     * Sends a raw string to the game server
+     * @param str The string to send.
+     */
     private sendRaw(str: string): void {
         if (!this.socket) {
             throw new Error("Cannot write to socket that has not been initialized");
@@ -168,6 +233,11 @@ export class Client {
         }
     }
 
+    /**
+     * A callback invoked when any data is recieved from the game server.
+     * @param data The data recieved, unparsed and potientally a part of a
+     * longer event.
+     */
     private onData(data: string): void {
         if (this.printIO) {
             console.log(chalk.magenta(`FROM SERVER --> ${data}`));
@@ -210,6 +280,12 @@ export class Client {
 
     // --- auto handle events --- \\
 
+    /**
+     * Tries to auto handle an event.
+     * @param event The event name to attempt to automatically handle.
+     * @param data The data that game with the event (if any).
+     * @returns True if the event was automatically handled, false otherwise.
+     */
     private tryToAutoHandle(event: string, data: any): boolean {
         switch (event) {
             case "order":
@@ -232,7 +308,12 @@ export class Client {
         }
     }
 
-    private async autoHandleOrder(data: any): Promise<any> {
+    /**
+     * Automatically handles an order for the AI
+     * @param data The data about the order for the AI.
+     * @returns A promise that resolves once the AI has executed the order.
+     */
+    private async autoHandleOrder(data: any): Promise<void> {
         if (!this.acceptingOrders) {
             this.cachedOrders.push(data);
             return; // it's cached and will be re0invoked later
@@ -268,6 +349,12 @@ export class Client {
         });
     }
 
+    /**
+     * A delta event to update the game state.
+     * @param delta The delta to merge into the game.
+     * @returns A promise that resolves once the AI and Game have been updated
+     * and have been notified.
+     */
     private async autoHandleDelta(delta: any): Promise<void> {
         try {
             this.gameManager!.applyDeltaState(delta);
@@ -294,6 +381,12 @@ export class Client {
         }
     }
 
+    /**
+     * An invalid event was sent back from the game server for the AI to know.
+     * @param data Contains a human readable message as to why the run was
+     * invalid.
+     * @returns A promise that resolves once the AI has handled it.
+     */
     private autoHandleInvalid(data: {message: string}): void {
         try {
             this.ai!.invalid(data.message);
@@ -303,13 +396,25 @@ export class Client {
         }
     }
 
-    private autoHandleFatal(data: {message: string}): void {
-        handleError(
+    /**
+     * A fatal event on the game server so we must close down.
+     * @param data Contains a human readable message as to why the game server
+     * encounted a fatal event.
+     * @returns This never returns, process.exit will be invoked instead
+     */
+    private autoHandleFatal(data: {message: string}): never {
+        return handleError(
             ErrorCode.FATAL_EVENT,
             `Got fatal event from server: ${data.message}`,
         );
     }
 
+    /**
+     * Handles when the game is over, and closes the client
+     * @param data No important data is sent to us.
+     * @returns. This never resolves as the client exits after the AI is
+     * notified.
+     */
     private autoHandleOver(data: any): never {
         const won = this.ai!.player.won;
         const reason = won ? this.ai!.player.reasonWon : this.ai!.player.reasonLost;
@@ -336,4 +441,8 @@ export class Client {
     }
 }
 
+/**
+ * A singleton instance of the Client, as no two clients will ever run
+ * concurrently.
+ */
 export const client = new Client();

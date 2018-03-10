@@ -5,24 +5,38 @@ import { client } from "./client";
  * runtime manipulation that would be redundant via Creer
  */
 export class BaseGameObject {
+    /** The name of the top class that this game object is in its module. */
     public readonly gameObjectName: string = "";
+
+    /**
+     * A unique ID (unique to the game instance) of the game object.
+     * Will never change, and IDs are never re-used.
+     */
     public readonly id: string = "";
 
-    // protected to discourage competitors from using this
+    /**
+     * The constructor is protected to discourage competitors from
+     * instantiating game objects (which would break things).
+     * @hidden
+     */
     protected constructor() {}
 
     /**
-     * toString override for easier debugging
-     * @returns a human readable representation of the game object
+     * A toString override for easier debugging.
+     * @returns A human readable representation of the game object.
+     * @example `toString(gameObject);` => `GameObjectName #1245`
      */
     public toString(): string {
         return `${this.gameObjectName} #${this.id}`;
     }
 
     /**
-     * Runs a function on the game server on behalf of this game object
-     * @param functionName the name of the member function of this class
-     * @param args key/value args to send to the server
+     * Runs a function on the game server on behalf of this game object.
+     * @hidden
+     * @param functionName The name of the member function of this class.
+     * @param args Object of key/value args to send to the server.
+     * @returns A promise that should eventually resolve into the return
+     * value of the run command.
      */
     protected runOnServer(functionName: string, args: {
         [key: string]: any;
