@@ -1,24 +1,16 @@
-// This is where you build your AI for the ${game_name} game.
-<%include file='functions.noCreer' /><%
+// This is where you build your AI for the Stumped game.
 
-imports = {
-    "../../joueur/base-ai": ["BaseAI"],
-    "./player": ["Player"],
-    "./game": ["Game"]
-}
+import { BaseAI } from "../../joueur/base-ai";
+import { Game } from "./game";
+import { Player } from "./player";
+import { Tile } from "./tile";
 
-if 'TiledGame' in game['serverParentClasses']:
-    imports['./tile'] = ["Tile"]
-
-%>${shared['ts']['imports'](shared['ts']['generate_imports']("AI", ai, imports))}
-${merge(
-    '// ', 'imports',
-    '// any additional imports you want can be required here safely between creer runs',
-    optional=True, help=False
-)}
+// <<-- Creer-Merge: imports -->>
+// any additional imports you want can be required here safely between creer runs
+// <<-- /Creer-Merge: imports -->>
 
 /**
- * This is the class to play the ${game_name} game.
+ * This is the class to play the Stumped game.
  * This is where you should build your AI.
  */
 export class AI extends BaseAI {
@@ -26,11 +18,9 @@ export class AI extends BaseAI {
      * This is the name you send to the server so your AI will control the player named this string.
      */
     public static getName(): string {
-${merge(
-'        // ', 'getName',
-'        return "' + game_name + ' JavaScript Player";',
-help=False
-)}
+        // <<-- Creer-Merge: getName -->>
+        return "Stumped JavaScript Player";
+        // <<-- /Creer-Merge: getName -->>
     }
 
     /**
@@ -47,21 +37,18 @@ help=False
      * This is called once the game starts and your AI knows its playerID and game. You can initialize your AI here.
      */
     public async start(): Promise<void> {
-${merge(
-'        // ', 'start',
-'        // pass',
-help=False
-)}
+        // <<-- Creer-Merge: start -->>
+        // pass
+        // <<-- /Creer-Merge: start -->>
     }
 
     /**
      * This is called every time the game's state updates, so if you are tracking anything you can update it here.
      */
     public async gameUpdated(): Promise<void> {
-${merge(
-'        // ', 'gameUpdated',
-'        // pass',
-help=False)}
+        // <<-- Creer-Merge: gameUpdated -->>
+        // pass
+        // <<-- /Creer-Merge: gameUpdated -->>
     }
 
     /**
@@ -71,26 +58,22 @@ help=False)}
      * @param reason The human readable string explaining why you won or lost.
      */
     public async ended(won: boolean, reason: string): Promise<void> {
-${merge(
-'        // ', 'ended',
-'        // pass',
-help=False)}
+        // <<-- Creer-Merge: ended -->>
+        // pass
+        // <<-- /Creer-Merge: ended -->>
     }
-% for function_name in ai['function_names']:
-<%
-    function_parms = ai['functions'][function_name]
-    ret = function_parms['returns']
-%>${shared['ts']['formatted_function_top'](function_name, ai)}
-${merge(
-'        // ', function_name,
-"""        // Put your game logic here for {0}
-        return{1};
-""".format(function_name, (' ' + shared['ts']['default'](ret['type'])) if ret else ''),
-help=False)}
+    /**
+     * This is called every time it is this AI.player's turn.
+     * @returns Represents if you want to end your turn. True means end your
+     * turn, False means to keep your turn going and re-call this function.
+     */
+    public async runTurn(): Promise<boolean> {
+        // <<-- Creer-Merge: runTurn -->>
+        // Put your game logic here for runTurn
+        return false;
+        // <<-- /Creer-Merge: runTurn -->>
     }
-% endfor
 
-% if 'TiledGame' in game['serverParentClasses']: #// then we need to add some client side utility functions
     /**
      * A very basic path finding algorithm (Breadth First Search) that when
      * given a starting Tile, will return a valid path to the goal Tile.
@@ -156,9 +139,7 @@ help=False)}
         return [];
     }
 
-% endif
-${merge(
-'    // ', 'functions',
-'    // any additional functions you want to add for your AI',
-optional=True, help=False)}
+    // <<-- Creer-Merge: functions -->>
+    // any additional functions you want to add for your AI
+    // <<-- /Creer-Merge: functions -->>
 }
