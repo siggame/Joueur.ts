@@ -6,7 +6,6 @@ import { Player } from "./player";
 
 // <<-- Creer-Merge: imports -->>
 // any additional imports you want can be required here safely between creer runs
-import { Building } from "./building";
 // <<-- /Creer-Merge: imports -->>
 
 /**
@@ -70,76 +69,11 @@ export class AI extends BaseAI {
     public async runTurn(): Promise<boolean> {
         // <<-- Creer-Merge: runTurn -->>
         // Put your game logic here for runTurn
-        // <<-- Creer-Merge: runTurn -->>
-        // Get my first warehouse
-        console.log("current turn", this.game.currentTurn);
-        const warehouse = this.player.warehouses[0];
-        if (this.canBribe(warehouse)) {
-            // ignite the first enemy building
-            await warehouse.ignite(this.player.opponent!.buildings[0]);
-        }
-
-        // Get my first fire department
-        const fireDepartment = this.player.fireDepartments[0];
-        if (this.canBribe(fireDepartment)) {
-            // extinguish my first building if it's not my headquarters
-            const myBuilding = this.player.buildings[0];
-            if (!myBuilding.isHeadquarters) {
-                await fireDepartment.extinguish(myBuilding);
-            }
-        }
-
-        // Get my first police department
-        const policeDepartment = this.player.policeDepartments[0];
-        if (this.canBribe(policeDepartment)) {
-            // Get the first enemy warehouse
-            const toRaid = this.player.opponent!.warehouses[0];
-            // Make sure it is alive to be raided
-            if (toRaid.health > 0 && !toRaid.isHeadquarters) {
-                // Raid the first enemy warehouse if it's alive and not a headquarters
-                await policeDepartment.raid(toRaid);
-            }
-        }
-
-        // Get my first weather station
-        const weatherStation1 = this.player.weatherStations[0];
-        if (this.canBribe(weatherStation1)) {
-            // Make sure the intensity isn't at max
-            if (this.game.nextForecast) {
-                if (this.game.nextForecast.intensity < this.game.maxForecastIntensity) {
-                    await weatherStation1.intensify();
-                }
-                else {
-                    // Otherwise decrease the intensity
-                    await weatherStation1.intensify(true);
-                }
-            }
-        }
-
-        // Get my second weather station
-        const weatherStation2 = this.player.weatherStations[1];
-        if (this.canBribe(weatherStation2)) {
-            // Rotate clockwise
-            await weatherStation2.rotate();
-        }
-
-        return true;
+        return false;
         // <<-- /Creer-Merge: runTurn -->>
     }
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add for your AI
-    /**
-     * checks if this AI can bribe a building. This is an example function. you are free to remove/modify.
-     *
-     * @memberof AI
-     */
-    private canBribe(building: Building): boolean {
-        return(building
-            && building.health > 0
-            && !building.bribed
-            && building.owner === this.player
-        );
-    }
     // <<-- /Creer-Merge: functions -->>
 }

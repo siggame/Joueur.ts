@@ -13,6 +13,7 @@ import { Tile } from "./tile";
 
 /**
  * This is a collection of all the classes that Stumped uses to work.
+ * @hidden
  */
 export const namespace: IGameNamespace = {
     AI,

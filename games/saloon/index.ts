@@ -14,6 +14,7 @@ import { YoungGun } from "./young-gun";
 
 /**
  * This is a collection of all the classes that Saloon uses to work.
+ * @hidden
  */
 export const namespace: IGameNamespace = {
     AI,

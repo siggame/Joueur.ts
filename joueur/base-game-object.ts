@@ -24,7 +24,7 @@ export class BaseGameObject {
     /**
      * A toString override for easier debugging.
      * @returns A human readable representation of the game object.
-     * @example `toString(gameObject);` => `GameObjectName #1245`
+     * @example `String(gameObject);` 🠞 `"GameObjectName #1245"`
      */
     public toString(): string {
         return `${this.gameObjectName} #${this.id}`;

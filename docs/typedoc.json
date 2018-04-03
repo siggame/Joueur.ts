@@ -3,7 +3,7 @@
     "tsconfig": "./tsconfig.json",
     "out": "./output",
     "module": "esnext",
-    "exclude": "joueur/",
+    "exclude": "**/joueur/*.ts",
     "excludeExternals": true,
     "excludePrivate": true,
     "externalPattern": "*"

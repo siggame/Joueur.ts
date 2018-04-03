@@ -15,6 +15,7 @@ import { WeatherStation } from "./weather-station";
 
 /**
  * This is a collection of all the classes that Anarchy uses to work.
+ * @hidden
  */
 export const namespace: IGameNamespace = {
     AI,

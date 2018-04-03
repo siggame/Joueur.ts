@@ -10,6 +10,7 @@ import { ${game_obj_key} } from "./${hyphenate(game_obj_key)}";
 
 /**
  * This is a collection of all the classes that ${game_name} uses to work.
+ * @hidden
  */
 export const namespace: IGameNamespace = {
     AI,

@@ -10,6 +10,7 @@ import { Player } from "./player";
 
 /**
  * This is a collection of all the classes that Checkers uses to work.
+ * @hidden
  */
 export const namespace: IGameNamespace = {
     AI,

@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", "/home/ubuntu/#{client_name}"
-  
+
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     sudo apt-get update
     sudo apt-get upgrade -y
@@ -20,6 +20,6 @@ Vagrant.configure("2") do |config|
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
     source $HOME/.nvm/nvm.sh
     nvm install node
-    cd #{client_name} && npm install
+    cd #{client_name} && npm install && npm run build
   SHELL
 end

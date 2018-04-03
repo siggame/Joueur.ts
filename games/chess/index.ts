@@ -11,6 +11,7 @@ import { Player } from "./player";
 
 /**
  * This is a collection of all the classes that Chess uses to work.
+ * @hidden
  */
 export const namespace: IGameNamespace = {
     AI,
