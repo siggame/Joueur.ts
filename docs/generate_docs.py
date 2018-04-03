@@ -102,8 +102,8 @@ with open("README.md", "w+") as f:
     f.write(readme)
 """
 
-run(["npm", "install"], shell=True)
-run(["npm", "run", "docs"], shell=True)
+run(["npm install"], shell=True)
+run(["npm run docs"], shell=True)
 copyfile("./favicon.ico", "./output/favicon.ico")
 
 # inject favicon into output
