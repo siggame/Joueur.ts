@@ -1,7 +1,7 @@
 // DO NOT MODIFY THIS FILE
 
 import { IGameNamespace } from "../../joueur/interfaces";
-import { AI } from "./AI";
+import { AI } from "./ai";
 import { Game } from "./game";
 
 import { Beaver } from "./beaver";
