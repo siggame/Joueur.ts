@@ -2,6 +2,10 @@
 // Never try to directly create an instance of this class, or modify it.
 // Instead, you should only be reading its variables and calling its functions.
 
+/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
 import { Furnishing } from "./furnishing";
 import { GameObject } from "./game-object";
 import { Player } from "./player";
@@ -112,7 +116,6 @@ export class Cowboy extends GameObject {
             piano,
         });
     }
-
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

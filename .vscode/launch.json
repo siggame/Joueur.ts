@@ -7,10 +7,10 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Debug",
             "program": "${workspaceFolder}/index.ts",
             "args": [
-                "Anarchy"
+                "GAME-NAME"
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

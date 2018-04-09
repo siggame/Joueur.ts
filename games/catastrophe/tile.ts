@@ -2,6 +2,10 @@
 // Never try to directly create an instance of this class, or modify it.
 // Instead, you should only be reading its variables and calling its functions.
 
+/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
 import { GameObject } from "./game-object";
 import { Structure } from "./structure";
 import { Unit } from "./unit";
@@ -119,9 +123,9 @@ export class Tile extends GameObject {
      * @returns True if pathable, false otherwise
      */
     public isPathable(): boolean {
-        // <<-- Creer-Merge: is_pathable_builtin -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
+        // <<-- Creer-Merge: is-pathable-builtin -->>
         return false; // DEVELOPER ADD LOGIC HERE
-        // <<-- /Creer-Merge: is_pathable_builtin -->>
+        // <<-- /Creer-Merge: is-pathable-builtin -->>
     }
 
     /**
@@ -133,10 +137,9 @@ export class Tile extends GameObject {
             this.tileNorth === tile ||
             this.tileEast === tile ||
             this.tileSouth === tile ||
-            this.tileEast === tile)
+            this.tileEast === tile),
         );
     }
-
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here
     // <<-- /Creer-Merge: functions -->>

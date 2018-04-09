@@ -16,7 +16,11 @@ else:
         imports['../../joueur/base-game-object'] = ['BaseGameObject']
 
 # // now figure out what classes our attributes and functions use
-%>${shared['ts']['imports'](shared['ts']['generate_imports'](obj_key, obj, imports))}
+%>/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
+${shared['ts']['imports'](shared['ts']['generate_imports'](obj_key, obj, imports))}
 ${merge('// ', 'imports', '// any additional imports you want can be placed here safely between creer runs', optional=True, help=False)}
 
 ${shared['ts']['block_comment']('', obj)}
@@ -99,7 +103,7 @@ ${shared['ts']['formatted_function_top'](function_name, obj)}
      * @returns True if pathable, false otherwise
      */
     public isPathable(): boolean {
-${merge("        // ", "is_pathable_builtin", "        return false; // DEVELOPER ADD LOGIC HERE")}
+${merge("        // ", "is-pathable-builtin", "        return false; // DEVELOPER ADD LOGIC HERE", help=False)}
     }
 
     /**
@@ -111,12 +115,11 @@ ${merge("        // ", "is_pathable_builtin", "        return false; // DEVELOPE
             this.tileNorth === tile ||
             this.tileEast === tile ||
             this.tileSouth === tile ||
-            this.tileEast === tile)
+            this.tileEast === tile),
         );
     }
 % endif
 % endif
-
 % endif
 ${merge(
     '    // ',

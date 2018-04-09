@@ -2,6 +2,10 @@
 // Never try to directly create an instance of this class, or modify it.
 // Instead, you should only be reading its variables and calling its functions.
 
+/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
 import { BaseGame } from "../../joueur/base-game";
 import { Bottle } from "./bottle";
 import { Cowboy } from "./cowboy";
@@ -140,7 +144,6 @@ export class Game extends BaseGame {
 
         return this.tiles[x + y * this.mapWidth];
     }
-
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here
     // <<-- /Creer-Merge: functions -->>

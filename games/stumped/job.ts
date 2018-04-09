@@ -2,6 +2,10 @@
 // Never try to directly create an instance of this class, or modify it.
 // Instead, you should only be reading its variables and calling its functions.
 
+/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
 import { Beaver } from "./beaver";
 import { GameObject } from "./game-object";
 import { Tile } from "./tile";
@@ -76,7 +80,6 @@ export class Job extends GameObject {
             tile,
         });
     }
-
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

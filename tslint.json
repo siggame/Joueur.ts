@@ -1,18 +1,16 @@
 {
     "extends": [
         "tslint:recommended"
+        // feel free to
     ],
     "rules": {
-        "new-parens": true,
-        "no-bitwise": true,
-        "import-spacing": true,
-        "no-unused-expression": [true, "allow-new"],
-        "object-literal-sort-keys": false,
-        "one-line": [true, "check-open-brace", "check-whitespace"],
-        "typedef": [ true,
-            "call-signature",
-            "parameter",
-            "property-declaration"
+        // feel free to add or change any rules you desire.
+    },
+    "linterOptions": {
+        "exclude": [
+            // Ignore all the typescript files we made so you don't have to
+            // correct our linter errors you define above
+            "joueur/*"
         ]
     }
 }

@@ -2,6 +2,10 @@
 // Never try to directly create an instance of this class, or modify it.
 // Instead, you should only be reading its variables and calling its functions.
 
+/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
 import { GameObject } from "./game-object";
 import { Tile } from "./tile";
 
@@ -36,7 +40,6 @@ export class Bottle extends GameObject {
      * The Tile this bottle is currently flying over.
      */
     public readonly tile!: Tile | undefined;
-
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

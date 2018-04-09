@@ -2,6 +2,10 @@
 // Never try to directly create an instance of this class, or modify it.
 // Instead, you should only be reading its variables and calling its functions.
 
+/* tslint:disable */
+// This is code written by a computer, it might be funky.
+// (though we will try to make it readable to humans)
+
 import { GameObject } from "./game-object";
 import { Structure } from "./structure";
 import { Unit } from "./unit";
@@ -82,7 +86,6 @@ export class Player extends GameObject {
      * If the player won the game or not.
      */
     public readonly won!: boolean;
-
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here
