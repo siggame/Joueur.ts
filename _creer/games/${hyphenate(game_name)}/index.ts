@@ -17,7 +17,7 @@ export const namespace: IGameNamespace = {
     Game,
     GameObjectClasses: {
 % for game_obj_key in sort_dict_keys(game_objs):
-      ${game_obj_key},
+        ${game_obj_key},
 % endfor
     },
 };

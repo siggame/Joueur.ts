@@ -73,4 +73,4 @@ parser.addArgument(["--printIO"], {
     help: "(debugging) print IO through the TCP socket to the terminal",
 });
 
-run(parser.parseArgs());
+run(parser.parseArgs()); // tslint:disable-line:no-unsafe-any

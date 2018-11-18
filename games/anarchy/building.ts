@@ -71,7 +71,7 @@ export class Building extends GameObject {
      * The player that owns this building. If it burns down (health reaches 0)
      * that player gets an additional bribe(s).
      */
-    public readonly owner!: Player | undefined;
+    public readonly owner!: Player;
 
     /**
      * The location of the Building along the x-axis.

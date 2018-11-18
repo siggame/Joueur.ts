@@ -7,7 +7,6 @@
 // (though we will try to make it readable to humans)
 
 import { GameObject } from "./game-object";
-import { Piece } from "./piece";
 
 // <<-- Creer-Merge: imports -->>
 // any additional imports you want can be placed here safely between creer runs
@@ -25,27 +24,15 @@ export class Player extends GameObject {
     public readonly clientType!: string;
 
     /**
-     * The color (side) of this player. Either 'White' or 'Black', with the
-     * 'White' player having the first move.
+     * The color (side) of this player. Either 'white' or 'black', with the
+     * 'white' player having the first move.
      */
-    public readonly color!: string;
-
-    /**
-     * True if this player is currently in check, and must move out of check,
-     * false otherwise.
-     */
-    public readonly inCheck!: boolean;
+    public readonly color!: "black" | "white";
 
     /**
      * If the player lost the game or not.
      */
     public readonly lost!: boolean;
-
-    /**
-     * If the Player has made their move for the turn. true means they can no
-     * longer move a Piece this turn.
-     */
-    public readonly madeMove!: boolean;
 
     /**
      * The name of the player.
@@ -55,19 +42,7 @@ export class Player extends GameObject {
     /**
      * This player's opponent in the game.
      */
-    public readonly opponent!: Player | undefined;
-
-    /**
-     * All the uncaptured chess Pieces owned by this player.
-     */
-    public readonly pieces!: Piece[];
-
-    /**
-     * The direction your Pieces must go along the rank axis until they reach
-     * the other side. Will be +1 if the Player is 'White', or -1 if the Player
-     * is 'Black'.
-     */
-    public readonly rankDirection!: number;
+    public readonly opponent!: Player;
 
     /**
      * The reason why the player lost the game.

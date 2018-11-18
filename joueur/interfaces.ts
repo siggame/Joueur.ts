@@ -10,12 +10,3 @@ export interface IGameNamespace {
         [className: string]: typeof BaseGameObject;
     };
 }
-
-/** The shape of a player before they are constructed */
-export interface IBasePlayer extends BaseGameObject {
-    name: string;
-    won: boolean;
-    lost: boolean;
-    reasonWon: string;
-    reasonLost: string;
-}

@@ -24,7 +24,7 @@ export enum ErrorCode {
 /**
  * Handles an error with just a message
  * @param errorCode The error encountered.
- * @param message The human readble message about the error.
+ * @param message The human readable message about the error.
  */
 export function handleError(errorCode: ErrorCode, message: string): never;
 
@@ -32,15 +32,15 @@ export function handleError(errorCode: ErrorCode, message: string): never;
  * Handles an error with a proper thrown error caught.
  * @param errorCode The error encountered.
  * @param err The Error caught that caused this to be invoked.
- * @param message The human readble message about the error.
+ * @param message The human readable message about the error.
  */
 export function handleError(errorCode: ErrorCode, err: Error | string, message?: string): never;
 
 /**
- * Invoked when we encounter an unexpected error and must exit erronously
+ * Invoked when we encounter an unexpected error and must exit erroneously
  * @param errorCode The error encountered.
  * @param err The Error caught that caused this to be invoked.
- * @param message The human readble message about the error.
+ * @param message The human readable message about the error.
  */
 export function handleError(errorCode: ErrorCode, err: Error | string, message?: string): never {
     let msg = message || "";

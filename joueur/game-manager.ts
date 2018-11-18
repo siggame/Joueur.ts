@@ -1,3 +1,4 @@
+import { IDeltaMergeConstants } from "@cadre/ts-utils/cadre";
 import { BaseGame } from "./base-game";
 import { BaseGameObject } from "./base-game-object";
 import { ErrorCode, handleError } from "./handle-error";
@@ -5,15 +6,10 @@ import * as Serializer from "./serializer";
 
 // tslint:disable typedef no-any no-parameter-properties
 
-export interface IServerConstants {
-    DELTA_LIST_LENGTH: string;
-    DELTA_REMOVED: string;
-}
-
 // @class GameManager: basically state management. Competitors do not modify.
 export class BaseGameManager {
     /** constants used to parse delta merges */
-    public serverConstants: IServerConstants = {
+    public serverConstants: IDeltaMergeConstants = {
         DELTA_LIST_LENGTH: "",
         DELTA_REMOVED: "",
     };

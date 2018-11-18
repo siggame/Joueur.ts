@@ -75,7 +75,7 @@ export class Job extends GameObject {
      * the Beaver of this Job on.
      * @returns The recruited Beaver if successful, null otherwise.
      */
-    public async recruit(tile: Tile | undefined): Promise<Beaver | undefined> {
+    public async recruit(tile: Tile): Promise<Beaver | undefined> {
         return this.runOnServer("recruit", {
             tile,
         });

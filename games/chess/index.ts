@@ -5,8 +5,6 @@ import { AI } from "./ai";
 import { Game } from "./game";
 
 import { GameObject } from "./game-object";
-import { Move } from "./move";
-import { Piece } from "./piece";
 import { Player } from "./player";
 
 /**
@@ -17,9 +15,7 @@ export const namespace: IGameNamespace = {
     AI,
     Game,
     GameObjectClasses: {
-      GameObject,
-      Move,
-      Piece,
-      Player,
+        GameObject,
+        Player,
     },
 };

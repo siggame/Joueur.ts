@@ -29,7 +29,7 @@ export class FireDepartment extends Building {
      * @param building The Building you want to extinguish.
      * @returns True if the bribe worked, false otherwise.
      */
-    public async extinguish(building: Building | undefined): Promise<boolean> {
+    public async extinguish(building: Building): Promise<boolean> {
         return this.runOnServer("extinguish", {
             building,
         });

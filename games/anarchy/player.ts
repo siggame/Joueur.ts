@@ -49,7 +49,7 @@ export class Player extends GameObject {
      * The Warehouse that serves as this player's headquarters and has extra
      * health. If this gets destroyed they lose.
      */
-    public readonly headquarters!: Warehouse | undefined;
+    public readonly headquarters!: Warehouse;
 
     /**
      * If the player lost the game or not.
@@ -64,7 +64,7 @@ export class Player extends GameObject {
     /**
      * This player's opponent in the game.
      */
-    public readonly opponent!: Player | undefined;
+    public readonly opponent!: Player;
 
     /**
      * All the PoliceDepartments owned by this player.

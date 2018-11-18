@@ -18,10 +18,10 @@ export const namespace: IGameNamespace = {
     AI,
     Game,
     GameObjectClasses: {
-      GameObject,
-      Player,
-      Port,
-      Tile,
-      Unit,
+        GameObject,
+        Player,
+        Port,
+        Tile,
+        Unit,
     },
 };

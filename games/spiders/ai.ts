@@ -14,15 +14,6 @@ import { Player } from "./player";
  */
 export class AI extends BaseAI {
     /**
-     * This is the name you send to the server so your AI will control the player named this string.
-     */
-    public static getName(): string {
-        // <<-- Creer-Merge: getName -->>
-        return "Spiders JavaScript Player";
-        // <<-- /Creer-Merge: getName -->>
-    }
-
-    /**
      * The reference to the Game instance this AI is playing.
      */
     public readonly game!: Game;
@@ -31,9 +22,21 @@ export class AI extends BaseAI {
      * The reference to the Player this AI controls in the Game.
      */
     public readonly player!: Player;
+    /**
+     * This is the name you send to the server so your AI
+     * will control the player named this string.
+     *
+     * @returns A string for the name of your player.
+     */
+    public getName(): string {
+        // <<-- Creer-Merge: getName -->>
+        return "Spiders JavaScript Player";
+        // <<-- /Creer-Merge: getName -->>
+    }
 
     /**
-     * This is called once the game starts and your AI knows its playerID and game. You can initialize your AI here.
+     * This is called once the game starts and your AI knows its playerID and game.
+     * You can initialize your AI here.
      */
     public async start(): Promise<void> {
         // <<-- Creer-Merge: start -->>

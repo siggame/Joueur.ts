@@ -26,7 +26,7 @@ export class Checker extends GameObject {
     /**
      * The player that controls this Checker.
      */
-    public readonly owner!: Player | undefined;
+    public readonly owner!: Player;
 
     /**
      * The x coordinate of the checker.

@@ -7,6 +7,7 @@
 // (though we will try to make it readable to humans)
 
 import { GameObject } from "./game-object";
+import { Player } from "./player";
 import { Spider } from "./spider";
 import { Web } from "./web";
 
@@ -19,6 +20,12 @@ import { Web } from "./web";
  * Spiders can converge on, regardless of owner.
  */
 export class Nest extends GameObject {
+
+    /**
+     * The Player that 'controls' this Nest as they have the most Spiders on
+     * this nest.
+     */
+    public readonly controllingPlayer!: Player | undefined;
 
     /**
      * All the Spiders currently located on this Nest.

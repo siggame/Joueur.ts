@@ -56,12 +56,12 @@ export class Cowboy extends GameObject {
      * The job that this Cowboy does, and dictates how they fight and interact
      * within the Saloon.
      */
-    public readonly job!: string;
+    public readonly job!: "Bartender" | "Brawler" | "Sharpshooter";
 
     /**
      * The Player that owns and can control this Cowboy.
      */
-    public readonly owner!: Player | undefined;
+    public readonly owner!: Player;
 
     /**
      * The Tile that this Cowboy is located on.
@@ -87,8 +87,10 @@ export class Cowboy extends GameObject {
      * to be in, can be 'North', 'East', 'South', or 'West'.
      * @returns True if the act worked, false otherwise.
      */
-    public async act(tile: Tile | undefined, drunkDirection: string = ""):
-                     Promise<boolean> {
+    public async act(
+        tile: Tile,
+        drunkDirection: "" | "North" | "East" | "South" | "West" = "",
+    ): Promise<boolean> {
         return this.runOnServer("act", {
             tile,
             drunkDirection,
@@ -100,7 +102,7 @@ export class Cowboy extends GameObject {
      * @param tile The Tile you want to move this Cowboy to.
      * @returns True if the move worked, false otherwise.
      */
-    public async move(tile: Tile | undefined): Promise<boolean> {
+    public async move(tile: Tile): Promise<boolean> {
         return this.runOnServer("move", {
             tile,
         });
@@ -111,7 +113,7 @@ export class Cowboy extends GameObject {
      * @param piano The Furnishing that is a piano you want to play.
      * @returns True if the play worked, false otherwise.
      */
-    public async play(piano: Furnishing | undefined): Promise<boolean> {
+    public async play(piano: Furnishing): Promise<boolean> {
         return this.runOnServer("play", {
             piano,
         });

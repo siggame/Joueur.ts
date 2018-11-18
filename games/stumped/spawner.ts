@@ -33,12 +33,12 @@ export class Spawner extends GameObject {
     /**
      * The Tile this Spawner is on.
      */
-    public readonly tile!: Tile | undefined;
+    public readonly tile!: Tile;
 
     /**
      * What type of resource this is ('food' or 'branches').
      */
-    public readonly type!: string;
+    public readonly type!: "food" | "branches";
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

@@ -70,7 +70,7 @@ export class Tile extends GameObject {
     /**
      * The type of Tile this is ('water' or 'land').
      */
-    public readonly type!: string;
+    public readonly type!: "water" | "land";
 
     /**
      * The Unit on this Tile if present, otherwise null.
@@ -88,9 +88,9 @@ export class Tile extends GameObject {
     public readonly y!: number;
 
     /**
-     * Gets the neighbors of this Tile
+     * Gets the neighbors of this Tile.
      *
-     * @returns {Array.<Tile>} - The neighboring (adjacent) Tiles to this tile
+     * @returns The neighboring (adjacent) Tiles to this tile.
      */
     public getNeighbors(): Tile[] {
         const neighbors = [];

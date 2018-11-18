@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import {} from "fs";
 import { BaseAI, setAISettings } from "./base-ai";
 import { BaseGame } from "./base-game";
 import { client } from "./client";
@@ -130,7 +129,7 @@ export async function run(args: {
         requestedSession: args.session,
         clientType: "TypeScript",
         playerName: args.playerName
-                 || gameNamespace.AI.getName()
+                 || ai.getName()
                  || "TypeScript Player",
         playerIndex: args.index,
         gameSettings: args.gameSettings,
@@ -172,6 +171,6 @@ export async function run(args: {
 
     client.acceptOrders();
 
-    // the client will now wait for order(s) asynchronously
-    // the process will exit when "end" is sent from the game server
+    // The client will now wait for order(s) asynchronously.
+    // The process will exit when "end" is sent from the game server.
 }

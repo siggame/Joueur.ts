@@ -37,7 +37,7 @@ export class BroodMother extends Spider {
      * as this BroodMother.
      * @returns True if the Spiderling was consumed. False otherwise.
      */
-    public async consume(spiderling: Spiderling | undefined): Promise<boolean> {
+    public async consume(spiderling: Spiderling): Promise<boolean> {
         return this.runOnServer("consume", {
             spiderling,
         });
@@ -50,8 +50,9 @@ export class BroodMother extends Spider {
      * Spawn. Must be 'Spitter', 'Weaver', or 'Cutter'.
      * @returns The newly spwaned Spiderling if successful. Null otherwise.
      */
-    public async spawn(spiderlingType: string): Promise<Spiderling | undefined>
-                       {
+    public async spawn(
+        spiderlingType: "Spitter" | "Weaver" | "Cutter",
+    ): Promise<Spiderling | undefined> {
         return this.runOnServer("spawn", {
             spiderlingType,
         });

@@ -14,7 +14,7 @@ export interface ISerializableObject { [key: string]: SerializableTypes; }
 /** An object of keys to any value */
 interface IAnyObject { [key: string]: any; }
 
-/** A game object reference enoucnted that represents the actual game object */
+/** A game object reference encountered that represents the actual game object */
 export interface IGameObjectReference { id: string; }
 
 /**

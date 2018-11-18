@@ -25,7 +25,7 @@ export class PoliceDepartment extends Building {
      * @returns The amount of damage dealt to the warehouse, or -1 if there was
      * an error.
      */
-    public async raid(warehouse: Warehouse | undefined): Promise<number> {
+    public async raid(warehouse: Warehouse): Promise<number> {
         return this.runOnServer("raid", {
             warehouse,
         });

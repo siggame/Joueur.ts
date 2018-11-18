@@ -42,7 +42,7 @@ export class Tile extends GameObject {
      * The cardinal direction water is flowing on this Tile ('North', 'East',
      * 'South', 'West').
      */
-    public readonly flowDirection!: string;
+    public readonly flowDirection!: "North" | "East" | "South" | "West" | "";
 
     /**
      * The number of food dropped on this Tile.
@@ -84,9 +84,9 @@ export class Tile extends GameObject {
     public readonly tileWest!: Tile | undefined;
 
     /**
-     * What type of Tile this is, either 'Water' or 'Land'.
+     * What type of Tile this is, either 'water' or 'land'.
      */
-    public readonly type!: string;
+    public readonly type!: "land" | "water";
 
     /**
      * The x (horizontal) position of this Tile.
@@ -99,9 +99,9 @@ export class Tile extends GameObject {
     public readonly y!: number;
 
     /**
-     * Gets the neighbors of this Tile
+     * Gets the neighbors of this Tile.
      *
-     * @returns {Array.<Tile>} - The neighboring (adjacent) Tiles to this tile
+     * @returns The neighboring (adjacent) Tiles to this tile.
      */
     public getNeighbors(): Tile[] {
         const neighbors = [];

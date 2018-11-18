@@ -36,13 +36,13 @@ export class Game extends BaseGame {
     /**
      * The current Forecast, which will be applied at the end of the turn.
      */
-    public readonly currentForecast!: Forecast | undefined;
+    public readonly currentForecast!: Forecast;
 
     /**
      * The player whose turn it is currently. That player can send commands.
      * Other players cannot.
      */
-    public readonly currentPlayer!: Player | undefined;
+    public readonly currentPlayer!: Player;
 
     /**
      * The current turn number, starting at 0 for the first player's turn.
@@ -58,7 +58,7 @@ export class Game extends BaseGame {
      * A mapping of every game object's ID to the actual game object. Primarily
      * used by the server and client to easily refer to the game objects via ID.
      */
-    public readonly gameObjects!: {[id: string]: GameObject | undefined};
+    public readonly gameObjects!: { [id: string]: GameObject | undefined };
 
     /**
      * The width of the entire map along the vertical (y) axis.
@@ -100,6 +100,12 @@ export class Game extends BaseGame {
      * A unique identifier for the game instance that is being played.
      */
     public readonly session!: string;
+
+    /**
+     * The amount of time (in nano-seconds) added after each player performs a
+     * turn.
+     */
+    public readonly timeAddedPerTurn!: number;
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

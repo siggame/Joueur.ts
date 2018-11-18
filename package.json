@@ -12,21 +12,22 @@
   },
   "private": true,
   "dependencies": {
+    "@cadre/ts-utils": "1.0.5",
+    "@types/argparse": "1.0.35",
+    "@types/node": "10.12.5",
     "argparse": "1.0.10",
     "chalk": "2.4.1",
-    "typedoc": "0.12.0"
-  },
-  "devDependencies": {
-    "@types/argparse": "1.0.34",
-    "@types/node": "10.9.4",
     "shx": "0.3.2",
     "tslint": "5.11.0",
-    "typescript": "3.0.3"
+    "typescript": "3.1.6",
+    "typedoc": "0.13.0"
   },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/",
+    "clean": "shx rm -rf ./dist ./node_modules",
+    "lint:all": "tslint --config tslint.json --project tsconfig.json",
     "lint": "tslint -c tslint.json 'games/**/*.ts'",
-    "clean": "shx rm -rf ./dist ./node_modules"
+    "start": "node dist/",
+    "test": "npm run build && npm run lint"
   }
 }

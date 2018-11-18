@@ -29,7 +29,7 @@ export class Cutter extends Spiderling {
      * Cutter is currently on.
      * @returns True if the cut was successfully started, false otherwise.
      */
-    public async cut(web: Web | undefined): Promise<boolean> {
+    public async cut(web: Web): Promise<boolean> {
         return this.runOnServer("cut", {
             web,
         });

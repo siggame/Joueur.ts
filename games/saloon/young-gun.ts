@@ -25,7 +25,7 @@ export class YoungGun extends GameObject {
      * The Tile that a Cowboy will be called in on if this YoungGun calls in a
      * Cowboy.
      */
-    public readonly callInTile!: Tile | undefined;
+    public readonly callInTile!: Tile;
 
     /**
      * True if the YoungGun can call in a Cowboy, false otherwise.
@@ -35,12 +35,12 @@ export class YoungGun extends GameObject {
     /**
      * The Player that owns and can control this YoungGun.
      */
-    public readonly owner!: Player | undefined;
+    public readonly owner!: Player;
 
     /**
      * The Tile this YoungGun is currently on.
      */
-    public readonly tile!: Tile | undefined;
+    public readonly tile!: Tile;
 
     /**
      * Tells the YoungGun to call in a new Cowboy of the given job to the open
@@ -49,7 +49,9 @@ export class YoungGun extends GameObject {
      * @returns The new Cowboy that was called in if valid. They will not be
      * added to any `cowboys` lists until the turn ends. Null otherwise.
      */
-    public async callIn(job: string): Promise<Cowboy | undefined> {
+    public async callIn(
+        job: "Bartender" | "Brawler" | "Sharpshooter",
+    ): Promise<Cowboy | undefined> {
         return this.runOnServer("callIn", {
             job,
         });

@@ -23,7 +23,7 @@ export class Spiderling extends Spider {
      * When empty string this Spiderling is not busy, and can act. Otherwise a
      * string representing what it is busy with, e.g. 'Moving', 'Attacking'.
      */
-    public readonly busy!: string;
+    public readonly busy!: "" | "Moving" | "Attacking" | "Strengthening" | "Weakening" | "Cutting" | "Spitting";
 
     /**
      * The Web this Spiderling is using to move. Null if it is not moving.
@@ -52,7 +52,7 @@ export class Spiderling extends Spider {
      * @param spiderling The Spiderling to attack.
      * @returns True if the attack was successful, false otherwise.
      */
-    public async attack(spiderling: Spiderling | undefined): Promise<boolean> {
+    public async attack(spiderling: Spiderling): Promise<boolean> {
         return this.runOnServer("attack", {
             spiderling,
         });
@@ -63,7 +63,7 @@ export class Spiderling extends Spider {
      * @param web The Web you want to move across to the other Nest.
      * @returns True if the move was successful, false otherwise.
      */
-    public async move(web: Web | undefined): Promise<boolean> {
+    public async move(web: Web): Promise<boolean> {
         return this.runOnServer("move", {
             web,
         });

@@ -32,7 +32,7 @@ export class Game extends BaseGame {
      * The player whose turn it is currently. That player can send commands.
      * Other players cannot.
      */
-    public readonly currentPlayer!: Player | undefined;
+    public readonly currentPlayer!: Player;
 
     /**
      * The current turn number, starting at 0 for the first player's turn.
@@ -49,7 +49,7 @@ export class Game extends BaseGame {
      * A mapping of every game object's ID to the actual game object. Primarily
      * used by the server and client to easily refer to the game objects via ID.
      */
-    public readonly gameObjects!: {[id: string]: GameObject | undefined};
+    public readonly gameObjects!: { [id: string]: GameObject | undefined };
 
     /**
      * All the Jobs that Beavers can have in the game.
@@ -112,6 +112,12 @@ export class Game extends BaseGame {
      * mapWidth` to access the correct index.
      */
     public readonly tiles!: Tile[];
+
+    /**
+     * The amount of time (in nano-seconds) added after each player performs a
+     * turn.
+     */
+    public readonly timeAddedPerTurn!: number;
 
     /**
      * Gets the Tile at a specified (x, y) position

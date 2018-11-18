@@ -32,7 +32,7 @@ export class Spider extends GameObject {
     /**
      * The Player that owns this Spider, and can command it.
      */
-    public readonly owner!: Player | undefined;
+    public readonly owner!: Player;
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

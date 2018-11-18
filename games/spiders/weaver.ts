@@ -36,7 +36,7 @@ export class Weaver extends Spiderling {
      * @returns True if the strengthen was successfully started, false
      * otherwise.
      */
-    public async strengthen(web: Web | undefined): Promise<boolean> {
+    public async strengthen(web: Web): Promise<boolean> {
         return this.runOnServer("strengthen", {
             web,
         });
@@ -48,7 +48,7 @@ export class Weaver extends Spiderling {
      * Weaver is currently on.
      * @returns True if the weaken was successfully started, false otherwise.
      */
-    public async weaken(web: Web | undefined): Promise<boolean> {
+    public async weaken(web: Web): Promise<boolean> {
         return this.runOnServer("weaken", {
             web,
         });

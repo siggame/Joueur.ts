@@ -1,10 +1,12 @@
 language: node_js
-node_js:
-  - "9.8.0"
+
+before_script:
+  - npm install
 
 script:
   # make sure it compiles
   - npm run build
+  - npm run lint:all
 
 before_deploy:
   # run the docs

@@ -15,15 +15,6 @@ import { Tile } from "./tile";
  */
 export class AI extends BaseAI {
     /**
-     * This is the name you send to the server so your AI will control the player named this string.
-     */
-    public static getName(): string {
-        // <<-- Creer-Merge: getName -->>
-        return "Saloon JavaScript Player";
-        // <<-- /Creer-Merge: getName -->>
-    }
-
-    /**
      * The reference to the Game instance this AI is playing.
      */
     public readonly game!: Game;
@@ -32,9 +23,21 @@ export class AI extends BaseAI {
      * The reference to the Player this AI controls in the Game.
      */
     public readonly player!: Player;
+    /**
+     * This is the name you send to the server so your AI
+     * will control the player named this string.
+     *
+     * @returns A string for the name of your player.
+     */
+    public getName(): string {
+        // <<-- Creer-Merge: getName -->>
+        return "Saloon JavaScript Player";
+        // <<-- /Creer-Merge: getName -->>
+    }
 
     /**
-     * This is called once the game starts and your AI knows its playerID and game. You can initialize your AI here.
+     * This is called once the game starts and your AI knows its playerID and game.
+     * You can initialize your AI here.
      */
     public async start(): Promise<void> {
         // <<-- Creer-Merge: start -->>
@@ -78,9 +81,9 @@ export class AI extends BaseAI {
      * A very basic path finding algorithm (Breadth First Search) that when
      * given a starting Tile, will return a valid path to the goal Tile.
      *
-     * @param {Tile} start - the starting Tile
-     * @param {Tile} goal - the goal Tile
-     * @returns {Array.<Tile>} An array of Tiles representing the path, with
+     * @param start - the starting Tile.
+     * @param goal - the goal Tile.
+     * @returns An array of Tiles representing the path, with
      * the first element being a valid adjacent Tile to the start, and the last
      * element being the goal.
      */
@@ -102,7 +105,7 @@ export class AI extends BaseAI {
         // keep exploring neighbors of neighbors... until there are no more.
         while (fringe.length > 0) {
             // the tile we are currently exploring.
-            let inspect = fringe.shift()!;
+            let inspect = fringe.shift() as Tile;
 
             // cycle through the tile's neighbors.
             for (const neighbor of inspect.getNeighbors()) {
@@ -116,7 +119,7 @@ export class AI extends BaseAI {
                     // retracing our steps till we get to the starting tile
                     while (inspect !== start) {
                         path.unshift(inspect);
-                        inspect = cameFrom.get(inspect)!;
+                        inspect = cameFrom.get(inspect) as Tile;
                     }
 
                     return path;

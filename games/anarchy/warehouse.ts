@@ -39,7 +39,7 @@ export class Warehouse extends Building {
      * @returns The exposure added to this Building's exposure. -1 is returned
      * if there was an error.
      */
-    public async ignite(building: Building | undefined): Promise<number> {
+    public async ignite(building: Building): Promise<number> {
         return this.runOnServer("ignite", {
             building,
         });

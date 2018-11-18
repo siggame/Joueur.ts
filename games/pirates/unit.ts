@@ -87,8 +87,10 @@ export class Unit extends GameObject {
      * crew and ships deal damage to ships. Consumes any remaining moves.
      * @returns True if successfully attacked, false otherwise.
      */
-    public async attack(tile: Tile | undefined, target: string):
-                        Promise<boolean> {
+    public async attack(
+        tile: Tile,
+        target: "crew" | "ship",
+    ): Promise<boolean> {
         return this.runOnServer("attack", {
             tile,
             target,
@@ -142,7 +144,7 @@ export class Unit extends GameObject {
      * @param tile The Tile this Unit should move to.
      * @returns True if it moved, false otherwise.
      */
-    public async move(tile: Tile | undefined): Promise<boolean> {
+    public async move(tile: Tile): Promise<boolean> {
         return this.runOnServer("move", {
             tile,
         });
@@ -167,8 +169,11 @@ export class Unit extends GameObject {
      * will move all the gold to that Tile.
      * @returns True if successfully split, false otherwise.
      */
-    public async split(tile: Tile | undefined, amount: number = 1, gold: number
-                       = 0): Promise<boolean> {
+    public async split(
+        tile: Tile,
+        amount: number = 1,
+        gold: number = 0,
+    ): Promise<boolean> {
         return this.runOnServer("split", {
             tile,
             amount,

@@ -30,7 +30,7 @@ export class Tile extends GameObject {
                             = ["North", "East", "South", "West"];
 
     /**
-     * The beer Bottle currently flying over this Tile.
+     * The beer Bottle currently flying over this Tile, null otherwise.
      */
     public readonly bottle!: Bottle | undefined;
 
@@ -96,9 +96,9 @@ export class Tile extends GameObject {
     public readonly youngGun!: YoungGun | undefined;
 
     /**
-     * Gets the neighbors of this Tile
+     * Gets the neighbors of this Tile.
      *
-     * @returns {Array.<Tile>} - The neighboring (adjacent) Tiles to this tile
+     * @returns The neighboring (adjacent) Tiles to this tile.
      */
     public getNeighbors(): Tile[] {
         const neighbors = [];

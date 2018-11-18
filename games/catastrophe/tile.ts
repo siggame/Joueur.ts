@@ -92,9 +92,9 @@ export class Tile extends GameObject {
     public readonly y!: number;
 
     /**
-     * Gets the neighbors of this Tile
+     * Gets the neighbors of this Tile.
      *
-     * @returns {Array.<Tile>} - The neighboring (adjacent) Tiles to this tile
+     * @returns The neighboring (adjacent) Tiles to this tile.
      */
     public getNeighbors(): Tile[] {
         const neighbors = [];

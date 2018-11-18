@@ -8,8 +8,6 @@
 
 import { BaseGame } from "../../joueur/base-game";
 import { GameObject } from "./game-object";
-import { Move } from "./move";
-import { Piece } from "./piece";
 import { Player } from "./player";
 
 // <<-- Creer-Merge: imports -->>
@@ -22,18 +20,8 @@ import { Player } from "./player";
 export class Game extends BaseGame {
 
     /**
-     * The player whose turn it is currently. That player can send commands.
-     * Other players cannot.
-     */
-    public readonly currentPlayer!: Player | undefined;
-
-    /**
-     * The current turn number, starting at 0 for the first player's turn.
-     */
-    public readonly currentTurn!: number;
-
-    /**
-     * Forsythâ€“Edwards Notation, a notation that describes the game board.
+     * Forsyth-Edwards Notation (fen), a notation that describes the game board
+     * state.
      */
     public readonly fen!: string;
 
@@ -41,22 +29,14 @@ export class Game extends BaseGame {
      * A mapping of every game object's ID to the actual game object. Primarily
      * used by the server and client to easily refer to the game objects via ID.
      */
-    public readonly gameObjects!: {[id: string]: GameObject | undefined};
+    public readonly gameObjects!: { [id: string]: GameObject | undefined };
 
     /**
-     * The maximum number of turns before the game will automatically end.
+     * The list of [known] moves that have occured in the game, in Standard
+     * Algebriac Notation (SAN) format. The first element is the first move,
+     * with the last being the most recent.
      */
-    public readonly maxTurns!: number;
-
-    /**
-     * The list of Moves that have occurred, in order.
-     */
-    public readonly moves!: Move[];
-
-    /**
-     * All the uncaptured Pieces in the game.
-     */
-    public readonly pieces!: Piece[];
+    public readonly history!: string[];
 
     /**
      * List of all the players in the game.
@@ -67,12 +47,6 @@ export class Game extends BaseGame {
      * A unique identifier for the game instance that is being played.
      */
     public readonly session!: string;
-
-    /**
-     * How many turns until the game ends because no pawn has moved and no Piece
-     * has been taken.
-     */
-    public readonly turnsToDraw!: number;
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

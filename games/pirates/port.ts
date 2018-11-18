@@ -40,14 +40,14 @@ export class Port extends GameObject {
     /**
      * The Tile this Port is on.
      */
-    public readonly tile!: Tile | undefined;
+    public readonly tile!: Tile;
 
     /**
      * Spawn a Unit on this port.
      * @param type What type of Unit to create ('crew' or 'ship').
      * @returns True if Unit was created successfully, false otherwise.
      */
-    public async spawn(type: string): Promise<boolean> {
+    public async spawn(type: "crew" | "ship"): Promise<boolean> {
         return this.runOnServer("spawn", {
             type,
         });

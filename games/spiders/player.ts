@@ -22,7 +22,7 @@ export class Player extends GameObject {
     /**
      * This player's BroodMother. If it dies they lose the game.
      */
-    public readonly broodMother!: BroodMother | undefined;
+    public readonly broodMother!: BroodMother;
 
     /**
      * What type of client this is, e.g. 'Python', 'JavaScript', or some other
@@ -46,9 +46,14 @@ export class Player extends GameObject {
     public readonly name!: string;
 
     /**
+     * The number of nests this player controls.
+     */
+    public readonly numberOfNestsControlled!: number;
+
+    /**
      * This player's opponent in the game.
      */
-    public readonly opponent!: Player | undefined;
+    public readonly opponent!: Player;
 
     /**
      * The reason why the player lost the game.

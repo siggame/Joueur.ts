@@ -22,7 +22,7 @@ export class Player extends GameObject {
     /**
      * The overlord cat Unit owned by this Player.
      */
-    public readonly cat!: Unit | undefined;
+    public readonly cat!: Unit;
 
     /**
      * What type of client this is, e.g. 'Python', 'JavaScript', or some other
@@ -48,7 +48,7 @@ export class Player extends GameObject {
     /**
      * This player's opponent in the game.
      */
-    public readonly opponent!: Player | undefined;
+    public readonly opponent!: Player;
 
     /**
      * The reason why the player lost the game.

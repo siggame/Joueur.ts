@@ -23,13 +23,13 @@ export class Forecast extends GameObject {
      * The Player that can use WeatherStations to control this Forecast when its
      * the nextForecast.
      */
-    public readonly controllingPlayer!: Player | undefined;
+    public readonly controllingPlayer!: Player;
 
     /**
      * The direction the wind will blow fires in. Can be 'north', 'east',
      * 'south', or 'west'.
      */
-    public readonly direction!: string;
+    public readonly direction!: "North" | "East" | "South" | "West";
 
     /**
      * How much of a Building's fire that can be blown in the direction of this

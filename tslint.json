@@ -1,7 +1,8 @@
 {
     "extends": [
-        "tslint:recommended"
-        // feel free to
+        "tslint:recommended",
+        "@cadre/ts-utils/tslint.json"
+        // feel free to add or remove any linter rule sets you want
     ],
     "rules": {
         // feel free to add or change any rules you desire.

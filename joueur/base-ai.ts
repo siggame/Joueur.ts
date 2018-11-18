@@ -1,6 +1,6 @@
+import { IBasePlayer } from "@cadre/ts-utils/cadre";
 import chalk from "chalk";
 import { BaseGame } from "./base-game";
-import { IBasePlayer } from "./interfaces";
 
 /**
  * A helper function to set "private" properties of the AI classes
@@ -27,9 +27,9 @@ export class BaseAI {
      * gameplay starts.
      * @returns A string of their name.
      */
-    public static getName(): string {
+    public getName(): string {
          // Intended to be overridden by the AI class
-        return "JavaScript Player";
+        return "TypeScript Player";
     }
 
     /** The base game this AI is player */
@@ -89,9 +89,9 @@ export class BaseAI {
      * If the flag was set it will be returned as a string value, undefined
      * otherwise.
      *
-     * @param {string} key - The key of the setting you wish to get the value
+     * @param key - The key of the setting you wish to get the value
      * for.
-     * @returns {string|undefined} A string representing the value set via
+     * @returns A string representing the value set via
      * command line, or undefined if the key was not set.
      */
     public getSetting(key: string): string | undefined {

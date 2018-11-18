@@ -72,9 +72,9 @@ ${shared['ts']['formatted_function_top'](function_name, obj)}
     }
 % elif obj_key == 'Tile':
     /**
-     * Gets the neighbors of this Tile
+     * Gets the neighbors of this Tile.
      *
-     * @returns {Array.<Tile>} - The neighboring (adjacent) Tiles to this tile
+     * @returns The neighboring (adjacent) Tiles to this tile.
      */
     public getNeighbors(): Tile[] {
         const neighbors = [];

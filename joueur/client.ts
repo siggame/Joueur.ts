@@ -1,9 +1,10 @@
+import { NamedEvent, StartEvent, LobbiedEvent, RanEvent, ClientEvent, ServerEvent, OrderEvent, DeltaEvent, InvalidEvent, FatalEvent, OverEvent } from "@cadre/ts-utils/cadre";
 import chalk from "chalk";
 import { Socket } from "net";
 import { BaseAI } from "./base-ai";
 import { BaseGame } from "./base-game";
 import { BaseGameObject } from "./base-game-object";
-import { BaseGameManager, IServerConstants } from "./game-manager";
+import { BaseGameManager } from "./game-manager";
 import { ErrorCode, handleError } from "./handle-error";
 import * as Serializer from "./serializer";
 
@@ -71,10 +72,7 @@ export class Client {
 
             try {
                 this.socket = new Socket();
-                this.socket.connect({
-                    host,
-                    port,
-                });
+                this.socket.connect({ host, port });
             }
             catch (err) {
                 return handleError(
@@ -122,12 +120,12 @@ export class Client {
      * @param event The name of the event to send
      * @param data Optional data to send with the event.
      */
-    public send(event: string, data: any): void {
+    public send<T extends ClientEvent>(event: T["event"], data: T["data"]): void {
         this.sendRaw(
             JSON.stringify({
                 sentTime: (new Date()).getTime(),
                 event,
-                data: Serializer.serialize(data),
+                data: Serializer.serialize(data as {}),
             }) + EOT_CHAR,
         );
     }
@@ -154,23 +152,19 @@ export class Client {
     }
 
     /** Waits for the named event to resolve with the actual game name. */
-    public waitForEvent(event: "named"): Promise<string>;
+    public waitForEvent(event: "named"): Promise<NamedEvent["data"]>;
 
     /** Waits for the start event with our player's ID. */
-    public waitForEvent(event: "start"): Promise<{ playerID: string; }>;
+    public waitForEvent(event: "start"): Promise<Required<StartEvent["data"]>>;
 
     /** Waits for the lobbied event which contains game information. */
-    public waitForEvent(event: "lobbied"): Promise<{
-        gameName: string;
-        gameSession: string;
-        constants: IServerConstants;
-    }>;
+    public waitForEvent(event: "lobbied"): Promise<LobbiedEvent["data"]>;
 
     /** Waits for a ran event to resolve our run commands. */
-    public waitForEvent(event: "ran"): Promise<any>;
+    public waitForEvent(event: "ran"): Promise<RanEvent["data"]>;
 
     /** Waits for an event to resolve something. */
-    public waitForEvent(event: string): Promise<any> {
+    public waitForEvent(event: string): Promise<ServerEvent["data"]> {
         return new Promise((resolve, reject) => {
             if (!this.awaitingEvents[event]) {
                 this.awaitingEvents[event] = [];
@@ -234,8 +228,8 @@ export class Client {
     }
 
     /**
-     * A callback invoked when any data is recieved from the game server.
-     * @param data The data recieved, unparsed and potientally a part of a
+     * A callback invoked when any data is received from the game server.
+     * @param data The data received, unparsed and potentially a part of a
      * longer event.
      */
     private onData(data: string): void {
@@ -267,7 +261,7 @@ export class Client {
                 continue;
             }
 
-            if (this.tryToAutoHandle(parsed.event, parsed.data)) {
+            if (this.tryToAutoHandle(parsed)) {
                 continue;
             }
 
@@ -286,22 +280,22 @@ export class Client {
      * @param data The data that game with the event (if any).
      * @returns True if the event was automatically handled, false otherwise.
      */
-    private tryToAutoHandle(event: string, data: any): boolean {
-        switch (event) {
+    private tryToAutoHandle(event: ServerEvent): boolean {
+        switch (event.event) {
             case "order":
-                this.autoHandleOrder(data);
+                this.autoHandleOrder(event.data);
                 return true;
             case "delta":
-                this.autoHandleDelta(data);
+                this.autoHandleDelta(event.data);
                 return true;
             case "invalid":
-                this.autoHandleInvalid(data);
+                this.autoHandleInvalid(event.data);
                 return true;
             case "fatal":
-                this.autoHandleFatal(data);
+                this.autoHandleFatal(event.data);
                 return true;
             case "over":
-                this.autoHandleOver(data);
+                this.autoHandleOver(event.data);
                 return true;
             default:
                 return false;
@@ -313,7 +307,7 @@ export class Client {
      * @param data The data about the order for the AI.
      * @returns A promise that resolves once the AI has executed the order.
      */
-    private async autoHandleOrder(data: any): Promise<void> {
+    private async autoHandleOrder(data: OrderEvent["data"]): Promise<void> {
         if (!this.acceptingOrders) {
             this.cachedOrders.push(data);
             return; // it's cached and will be re0invoked later
@@ -355,7 +349,7 @@ export class Client {
      * @returns A promise that resolves once the AI and Game have been updated
      * and have been notified.
      */
-    private async autoHandleDelta(delta: any): Promise<void> {
+    private async autoHandleDelta(delta: DeltaEvent["data"]): Promise<void> {
         try {
             this.gameManager!.applyDeltaState(delta);
         }
@@ -387,7 +381,7 @@ export class Client {
      * invalid.
      * @returns A promise that resolves once the AI has handled it.
      */
-    private autoHandleInvalid(data: {message: string}): void {
+    private autoHandleInvalid(data: InvalidEvent["data"]): void {
         try {
             this.ai!.invalid(data.message);
         }
@@ -399,10 +393,10 @@ export class Client {
     /**
      * A fatal event on the game server so we must close down.
      * @param data Contains a human readable message as to why the game server
-     * encounted a fatal event.
+     * encountered a fatal event.
      * @returns This never returns, process.exit will be invoked instead
      */
-    private autoHandleFatal(data: {message: string}): never {
+    private autoHandleFatal(data: FatalEvent["data"]): never {
         return handleError(
             ErrorCode.FATAL_EVENT,
             `Got fatal event from server: ${data.message}`,
@@ -415,7 +409,7 @@ export class Client {
      * @returns. This never resolves as the client exits after the AI is
      * notified.
      */
-    private autoHandleOver(data: any): never {
+    private autoHandleOver(data: OverEvent["data"]): never {
         const won = this.ai!.player.won;
         const reason = won ? this.ai!.player.reasonWon : this.ai!.player.reasonLost;
 

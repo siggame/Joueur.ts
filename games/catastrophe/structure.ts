@@ -45,7 +45,7 @@ export class Structure extends GameObject {
      * The type of Structure this is ('shelter', 'monument', 'wall', 'road',
      * 'neutral').
      */
-    public readonly type!: string;
+    public readonly type!: "neutral" | "shelter" | "monument" | "wall" | "road";
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

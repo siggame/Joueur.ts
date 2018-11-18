@@ -40,7 +40,7 @@ export class Job extends GameObject {
     /**
      * The Job title.
      */
-    public readonly title!: string;
+    public readonly title!: "fresh human" | "cat overlord" | "soldier" | "gatherer" | "builder" | "missionary";
 
     /**
      * The amount of food per turn this Unit consumes. If there isn't enough

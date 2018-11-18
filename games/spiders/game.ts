@@ -27,7 +27,7 @@ export class Game extends BaseGame {
      * The player whose turn it is currently. That player can send commands.
      * Other players cannot.
      */
-    public readonly currentPlayer!: Player | undefined;
+    public readonly currentPlayer!: Player;
 
     /**
      * The current turn number, starting at 0 for the first player's turn.
@@ -49,7 +49,7 @@ export class Game extends BaseGame {
      * A mapping of every game object's ID to the actual game object. Primarily
      * used by the server and client to easily refer to the game objects via ID.
      */
-    public readonly gameObjects!: {[id: string]: GameObject | undefined};
+    public readonly gameObjects!: { [id: string]: GameObject | undefined };
 
     /**
      * The starting strength for Webs.
@@ -60,6 +60,11 @@ export class Game extends BaseGame {
      * The maximum number of turns before the game will automatically end.
      */
     public readonly maxTurns!: number;
+
+    /**
+     * The maximum strength a web can be strengthened to.
+     */
+    public readonly maxWebStrength!: number;
 
     /**
      * The speed at which Spiderlings move on Webs.
@@ -85,6 +90,12 @@ export class Game extends BaseGame {
      * The speed at which Spitters work to spit new Webs.
      */
     public readonly spitSpeed!: number;
+
+    /**
+     * The amount of time (in nano-seconds) added after each player performs a
+     * turn.
+     */
+    public readonly timeAddedPerTurn!: number;
 
     /**
      * How much web strength is added or removed from Webs when they are weaved.

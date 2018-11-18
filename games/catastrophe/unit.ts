@@ -38,7 +38,7 @@ export class Unit extends GameObject {
     /**
      * The Job this Unit was recruited to do.
      */
-    public readonly job!: Job | undefined;
+    public readonly job!: Job;
 
     /**
      * The amount of materials this Unit is holding.
@@ -93,7 +93,7 @@ export class Unit extends GameObject {
      * @param tile The Tile to attack.
      * @returns True if successfully attacked, false otherwise.
      */
-    public async attack(tile: Tile | undefined): Promise<boolean> {
+    public async attack(tile: Tile): Promise<boolean> {
         return this.runOnServer("attack", {
             tile,
         });
@@ -104,7 +104,9 @@ export class Unit extends GameObject {
      * @param job The name of the Job to change to.
      * @returns True if successfully changed Jobs, false otherwise.
      */
-    public async changeJob(job: string): Promise<boolean> {
+    public async changeJob(
+        job: "soldier" | "gatherer" | "builder" | "missionary",
+    ): Promise<boolean> {
         return this.runOnServer("changeJob", {
             job,
         });
@@ -117,8 +119,10 @@ export class Unit extends GameObject {
      * @param type The type of Structure to construct on that Tile.
      * @returns True if successfully constructed a structure, false otherwise.
      */
-    public async construct(tile: Tile | undefined, type: string):
-                           Promise<boolean> {
+    public async construct(
+        tile: Tile,
+        type: "neutral" | "shelter" | "monument" | "wall" | "road",
+    ): Promise<boolean> {
         return this.runOnServer("construct", {
             tile,
             type,
@@ -130,7 +134,7 @@ export class Unit extends GameObject {
      * @param tile The Tile with the Unit to convert.
      * @returns True if successfully converted, false otherwise.
      */
-    public async convert(tile: Tile | undefined): Promise<boolean> {
+    public async convert(tile: Tile): Promise<boolean> {
         return this.runOnServer("convert", {
             tile,
         });
@@ -142,7 +146,7 @@ export class Unit extends GameObject {
      * @param tile The Tile to deconstruct. It must have a Structure on it.
      * @returns True if successfully deconstructed, false otherwise.
      */
-    public async deconstruct(tile: Tile | undefined): Promise<boolean> {
+    public async deconstruct(tile: Tile): Promise<boolean> {
         return this.runOnServer("deconstruct", {
             tile,
         });
@@ -152,13 +156,16 @@ export class Unit extends GameObject {
      * Drops some of the given resource on or adjacent to the Unit's Tile. Does
      * not count as an action.
      * @param tile The Tile to drop materials/food on.
-     * @param resource The type of resource to drop ('material' or 'food').
+     * @param resource The type of resource to drop ('materials' or 'food').
      * @param amount The amount of the resource to drop. Amounts <= 0 will drop
      * as much as possible.
      * @returns True if successfully dropped the resource, false otherwise.
      */
-    public async drop(tile: Tile | undefined, resource: string, amount: number =
-                      0): Promise<boolean> {
+    public async drop(
+        tile: Tile,
+        resource: "materials" | "food",
+        amount: number = 0,
+    ): Promise<boolean> {
         return this.runOnServer("drop", {
             tile,
             resource,
@@ -171,7 +178,7 @@ export class Unit extends GameObject {
      * @param tile The Tile you want to harvest.
      * @returns True if successfully harvested, false otherwise.
      */
-    public async harvest(tile: Tile | undefined): Promise<boolean> {
+    public async harvest(tile: Tile): Promise<boolean> {
         return this.runOnServer("harvest", {
             tile,
         });
@@ -182,7 +189,7 @@ export class Unit extends GameObject {
      * @param tile The Tile this Unit should move to.
      * @returns True if it moved, false otherwise.
      */
-    public async move(tile: Tile | undefined): Promise<boolean> {
+    public async move(tile: Tile): Promise<boolean> {
         return this.runOnServer("move", {
             tile,
         });
@@ -192,13 +199,16 @@ export class Unit extends GameObject {
      * Picks up some materials or food on or adjacent to the Unit's Tile. Does
      * not count as an action.
      * @param tile The Tile to pickup materials/food from.
-     * @param resource The type of resource to pickup ('material' or 'food').
+     * @param resource The type of resource to pickup ('materials' or 'food').
      * @param amount The amount of the resource to pickup. Amounts <= 0 will
      * pickup as much as possible.
      * @returns True if successfully picked up a resource, false otherwise.
      */
-    public async pickup(tile: Tile | undefined, resource: string, amount: number
-                        = 0): Promise<boolean> {
+    public async pickup(
+        tile: Tile,
+        resource: "materials" | "food",
+        amount: number = 0,
+    ): Promise<boolean> {
         return this.runOnServer("pickup", {
             tile,
             resource,

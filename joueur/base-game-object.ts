@@ -1,10 +1,11 @@
+import { IBaseGameObject } from "@cadre/ts-utils/cadre";
 import { client } from "./client";
 
 /**
  * The base class that every game object within a game inherit from for
  * runtime manipulation that would be redundant via Creer
  */
-export class BaseGameObject {
+export class BaseGameObject implements IBaseGameObject {
     /** The name of the top class that this game object is in its module. */
     public readonly gameObjectName: string = "";
 
@@ -13,6 +14,9 @@ export class BaseGameObject {
      * Will never change, and IDs are never re-used.
      */
     public readonly id: string = "";
+
+    /** The logs logged to this game object. */
+    public readonly logs!: string[];
 
     /**
      * The constructor is protected to discourage competitors from

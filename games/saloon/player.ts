@@ -48,7 +48,7 @@ export class Player extends GameObject {
     /**
      * This player's opponent in the game.
      */
-    public readonly opponent!: Player | undefined;
+    public readonly opponent!: Player;
 
     /**
      * The reason why the player lost the game.
@@ -90,7 +90,7 @@ export class Player extends GameObject {
     /**
      * The YoungGun this Player uses to call in new Cowboys.
      */
-    public readonly youngGun!: YoungGun | undefined;
+    public readonly youngGun!: YoungGun;
 
     // <<-- Creer-Merge: functions -->>
     // any additional functions you want to add to this class can be preserved here

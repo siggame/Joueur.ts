@@ -14,15 +14,6 @@ import { Player } from "./player";
  */
 export class AI extends BaseAI {
     /**
-     * This is the name you send to the server so your AI will control the player named this string.
-     */
-    public static getName(): string {
-        // <<-- Creer-Merge: getName -->>
-        return "Chess JavaScript Player";
-        // <<-- /Creer-Merge: getName -->>
-    }
-
-    /**
      * The reference to the Game instance this AI is playing.
      */
     public readonly game!: Game;
@@ -31,9 +22,21 @@ export class AI extends BaseAI {
      * The reference to the Player this AI controls in the Game.
      */
     public readonly player!: Player;
+    /**
+     * This is the name you send to the server so your AI
+     * will control the player named this string.
+     *
+     * @returns A string for the name of your player.
+     */
+    public getName(): string {
+        // <<-- Creer-Merge: getName -->>
+        return "Chess JavaScript Player";
+        // <<-- /Creer-Merge: getName -->>
+    }
 
     /**
-     * This is called once the game starts and your AI knows its playerID and game. You can initialize your AI here.
+     * This is called once the game starts and your AI knows its playerID and game.
+     * You can initialize your AI here.
      */
     public async start(): Promise<void> {
         // <<-- Creer-Merge: start -->>
@@ -62,15 +65,16 @@ export class AI extends BaseAI {
         // <<-- /Creer-Merge: ended -->>
     }
     /**
-     * This is called every time it is this AI.player's turn.
-     * @returns Represents if you want to end your turn. True means end your
-     * turn, False means to keep your turn going and re-call this function.
+     * This is called every time it is this AI.player's turn to make a move.
+     * @returns A string in Standard Algebriac Notation (SAN) for the move you
+     * want to make. If the move is invalid or not properly formatted you will
+     * lose the game.
      */
-    public async runTurn(): Promise<boolean> {
-        // <<-- Creer-Merge: runTurn -->>
-        // Put your game logic here for runTurn
-        return false;
-        // <<-- /Creer-Merge: runTurn -->>
+    public async makeMove(): Promise<string> {
+        // <<-- Creer-Merge: makeMove -->>
+        // Put your game logic here for makeMove
+        return "";
+        // <<-- /Creer-Merge: makeMove -->>
     }
 
     // <<-- Creer-Merge: functions -->>

@@ -16,8 +16,8 @@ export const namespace: IGameNamespace = {
     AI,
     Game,
     GameObjectClasses: {
-      Checker,
-      GameObject,
-      Player,
+        Checker,
+        GameObject,
+        Player,
     },
 };

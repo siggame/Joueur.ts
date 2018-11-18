@@ -32,7 +32,7 @@ export class Spitter extends Spiderling {
      * and the one the Spitter is on.
      * @returns True if the spit was successful, false otherwise.
      */
-    public async spit(nest: Nest | undefined): Promise<boolean> {
+    public async spit(nest: Nest): Promise<boolean> {
         return this.runOnServer("spit", {
             nest,
         });

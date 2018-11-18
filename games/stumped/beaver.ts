@@ -44,7 +44,7 @@ export class Beaver extends GameObject {
     /**
      * The Job this Beaver was recruited to do.
      */
-    public readonly job!: Job | undefined;
+    public readonly job!: Job;
 
     /**
      * How many moves this Beaver has left this turn.
@@ -54,7 +54,7 @@ export class Beaver extends GameObject {
     /**
      * The Player that owns and can control this Beaver.
      */
-    public readonly owner!: Player | undefined;
+    public readonly owner!: Player;
 
     /**
      * True if the Beaver has finished being recruited and can do things, False
@@ -77,7 +77,7 @@ export class Beaver extends GameObject {
      * @param beaver The Beaver to attack. Must be on an adjacent Tile.
      * @returns True if successfully attacked, false otherwise.
      */
-    public async attack(beaver: Beaver | undefined): Promise<boolean> {
+    public async attack(beaver: Beaver): Promise<boolean> {
         return this.runOnServer("attack", {
             beaver,
         });
@@ -96,13 +96,16 @@ export class Beaver extends GameObject {
      * Drops some of the given resource on the beaver's Tile.
      * @param tile The Tile to drop branches/food on. Must be the same Tile that
      * the Beaver is on, or an adjacent one.
-     * @param resource The type of resource to drop ('branch' or 'food').
+     * @param resource The type of resource to drop ('branches' or 'food').
      * @param amount The amount of the resource to drop, numbers <= 0 will drop
      * all the resource type.
      * @returns True if successfully dropped the resource, false otherwise.
      */
-    public async drop(tile: Tile | undefined, resource: string, amount: number =
-                      0): Promise<boolean> {
+    public async drop(
+        tile: Tile,
+        resource: "branches" | "food",
+        amount: number = 0,
+    ): Promise<boolean> {
         return this.runOnServer("drop", {
             tile,
             resource,
@@ -116,7 +119,7 @@ export class Beaver extends GameObject {
      * Tile.
      * @returns True if successfully harvested, false otherwise.
      */
-    public async harvest(spawner: Spawner | undefined): Promise<boolean> {
+    public async harvest(spawner: Spawner): Promise<boolean> {
         return this.runOnServer("harvest", {
             spawner,
         });
@@ -127,7 +130,7 @@ export class Beaver extends GameObject {
      * @param tile The Tile this Beaver should move to.
      * @returns True if the move worked, false otherwise.
      */
-    public async move(tile: Tile | undefined): Promise<boolean> {
+    public async move(tile: Tile): Promise<boolean> {
         return this.runOnServer("move", {
             tile,
         });
@@ -137,13 +140,16 @@ export class Beaver extends GameObject {
      * Picks up some branches or food on the beaver's tile.
      * @param tile The Tile to pickup branches/food from. Must be the same Tile
      * that the Beaver is on, or an adjacent one.
-     * @param resource The type of resource to pickup ('branch' or 'food').
+     * @param resource The type of resource to pickup ('branches' or 'food').
      * @param amount The amount of the resource to drop, numbers <= 0 will
      * pickup all of the resource type.
      * @returns True if successfully picked up a resource, false otherwise.
      */
-    public async pickup(tile: Tile | undefined, resource: string, amount: number
-                        = 0): Promise<boolean> {
+    public async pickup(
+        tile: Tile,
+        resource: "branches" | "food",
+        amount: number = 0,
+    ): Promise<boolean> {
         return this.runOnServer("pickup", {
             tile,
             resource,
