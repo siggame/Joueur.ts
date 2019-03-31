@@ -6,5 +6,6 @@
     "exclude": "**/joueur/*.ts",
     "excludeExternals": true,
     "excludePrivate": true,
-    "externalPattern": "*"
+    "externalPattern": "*",
+    "ignoreCompilerErrors": true
 }
