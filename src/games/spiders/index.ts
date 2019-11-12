@@ -34,4 +34,5 @@ export const namespace: IGameNamespace = {
         Weaver,
         Web,
     },
+    gameVersion: "a8df6038306b6855bb35959d7698f8dcbf98f48e7e148de59fef940ccb241bdf",
 };

@@ -26,4 +26,5 @@ export const namespace: IGameNamespace = {
         Projectile,
         Unit,
     },
+    gameVersion: "0fa378e83ac567ebdf3e9805d3f130023f936e2740acda173d238b37f2b5d541",
 };

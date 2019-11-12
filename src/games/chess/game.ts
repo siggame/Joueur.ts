@@ -32,8 +32,8 @@ export class Game extends BaseGame {
     public readonly gameObjects!: { [id: string]: GameObject | undefined };
 
     /**
-     * The list of [known] moves that have occured in the game, in Standard
-     * Algebriac Notation (SAN) format. The first element is the first move,
+     * The list of [known] moves that have occurred in the game, in Standard
+     * Algebraic Notation (SAN) format. The first element is the first move,
      * with the last being the most recent.
      */
     public readonly history!: string[];

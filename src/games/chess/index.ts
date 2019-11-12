@@ -18,4 +18,5 @@ export const namespace: IGameNamespace = {
         GameObject,
         Player,
     },
+    gameVersion: "cfa5f5c1685087ce2899229c04c26e39f231e897ecc8fe036b44bc22103ef801",
 };

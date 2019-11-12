@@ -29,7 +29,7 @@ export class Cowboy extends GameObject {
      * The direction this Cowboy is moving while drunk. Will be 'North', 'East',
      * 'South', or 'West' when drunk; or '' (empty string) when not drunk.
      */
-    public readonly drunkDirection!: string;
+    public readonly drunkDirection!: "" | "North" | "East" | "South" | "West";
 
     /**
      * How much focus this Cowboy has. Different Jobs do different things with

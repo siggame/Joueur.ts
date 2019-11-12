@@ -20,4 +20,5 @@ export const namespace: IGameNamespace = {
         ${game_obj_key},
 % endfor
     },
+    gameVersion: "${game_version}",
 };

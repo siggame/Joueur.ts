@@ -9,4 +9,5 @@ export interface IGameNamespace {
     GameObjectClasses: {
         [className: string]: typeof BaseGameObject;
     };
+    gameVersion: string;
 }

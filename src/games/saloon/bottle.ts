@@ -22,13 +22,13 @@ export class Bottle extends GameObject {
      * The Direction this Bottle is flying and will move to between turns, can
      * be 'North', 'East', 'South', or 'West'.
      */
-    public readonly direction!: string;
+    public readonly direction!: "North" | "East" | "South" | "West";
 
     /**
      * The direction any Cowboys hit by this will move, can be 'North', 'East',
      * 'South', or 'West'.
      */
-    public readonly drunkDirection!: string;
+    public readonly drunkDirection!: "North" | "East" | "South" | "West";
 
     /**
      * True if this Bottle has impacted and has been destroyed (removed from the

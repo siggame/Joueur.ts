@@ -5,13 +5,14 @@ import { AI } from "./ai";
 import { Game } from "./game";
 
 import { GameObject } from "./game-object";
+import { Job } from "./job";
+import { Machine } from "./machine";
 import { Player } from "./player";
-import { Port } from "./port";
 import { Tile } from "./tile";
 import { Unit } from "./unit";
 
 /**
- * This is a collection of all the classes that Pirates uses to work.
+ * This is a collection of all the classes that Newtonian uses to work.
  * @hidden
  */
 export const namespace: IGameNamespace = {
@@ -19,10 +20,11 @@ export const namespace: IGameNamespace = {
     Game,
     GameObjectClasses: {
         GameObject,
+        Job,
+        Machine,
         Player,
-        Port,
         Tile,
         Unit,
     },
-    gameVersion: "d51fca49d06cb7164f9dbf9c3515ab0f9b5a17113a5946bddcc75aaba125967f",
+    gameVersion: "7c19f909ee5faa0ac3faf4e989032b5a37ba94aeb5d6ae7654a15a2bb1401bbe",
 };
