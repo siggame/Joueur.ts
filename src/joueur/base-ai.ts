@@ -1,5 +1,5 @@
 import { IBasePlayer } from "@cadre/ts-utils/cadre";
-import chalk from "chalk";
+import * as chalk from "chalk";
 import { BaseGame } from "./base-game";
 
 /**

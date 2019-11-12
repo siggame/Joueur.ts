@@ -1,5 +1,8 @@
-import { NamedEvent, StartEvent, LobbiedEvent, RanEvent, ClientEvent, ServerEvent, OrderEvent, DeltaEvent, InvalidEvent, FatalEvent, OverEvent } from "@cadre/ts-utils/cadre";
-import chalk from "chalk";
+import {
+    NamedEvent, LobbiedEvent, RanEvent, ClientEvent, ServerEvent, StartEvent,
+    OrderEvent, DeltaEvent, InvalidEvent, FatalEvent, OverEvent,
+} from "@cadre/ts-utils/cadre";
+import * as chalk from "chalk";
 import { Socket } from "net";
 import { BaseAI } from "./base-ai";
 import { BaseGame } from "./base-game";
@@ -73,8 +76,7 @@ export class Client {
             try {
                 this.socket = new Socket();
                 this.socket.connect({ host, port });
-            }
-            catch (err) {
+            } catch (err) {
                 return handleError(
                     ErrorCode.COULD_NOT_CONNECT,
                     err,

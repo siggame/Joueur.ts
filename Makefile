@@ -10,3 +10,4 @@ core:
 
 clean:
 	npm run clean
+	npm run purge

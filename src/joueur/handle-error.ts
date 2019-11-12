@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import * as chalk from "chalk";
 import { client } from "./client";
 
 // tslint:disable:only-arrow-functions typedef no-console no-any

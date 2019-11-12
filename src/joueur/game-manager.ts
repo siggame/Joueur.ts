@@ -1,3 +1,4 @@
+import { isObject } from "@cadre/ts-utils";
 import { IDeltaMergeConstants } from "@cadre/ts-utils/cadre";
 import { BaseGame } from "./base-game";
 import { BaseGameObject } from "./base-game-object";
@@ -98,7 +99,7 @@ export class BaseGameManager {
             if (d === this.serverConstants.DELTA_REMOVED) {
                 // tslint:disable-next-line:no-dynamic-delete
                 delete state[stateKey];
-            } else if (Serializer.isGameObjectReference(d)) {
+            } else if (isObject(d) && Serializer.isGameObjectReference(d)) {
                 state[stateKey] = this.game.gameObjects[d.id];
             } else if (Serializer.isObject(d) && Serializer.isObject(state[stateKey])) {
                 this.mergeDelta(state[stateKey], d);

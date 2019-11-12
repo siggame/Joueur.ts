@@ -1,7 +1,8 @@
 {
     "extends": [
-        "tslint:recommended",
-        "@cadre/ts-utils/tslint.json"
+        "tslint:recommended"
+        // this is out project-wide style, you may not agree with it so we've disabled it for you
+        // "@cadre/ts-utils/tslint.json"
         // feel free to add or remove any linter rule sets you want
     ],
     "rules": {
@@ -11,7 +12,7 @@
         "exclude": [
             // Ignore all the typescript files we made so you don't have to
             // correct our linter errors you define above
-            "joueur/*"
+            // "src/joueur/*"
         ]
     }
 }

@@ -18,15 +18,15 @@ parser.addArgument(["game"], {
 
 parser.addArgument(["-s", "--server"], {
     action: "store",
-    dest: "server",
     defaultValue: "127.0.0.1",
+    dest: "server",
     help: "the hostname or the server you want to connect to e.g. locahost:3000",
 });
 
 parser.addArgument(["-p", "--port"], {
     action: "store",
-    dest: "port",
     defaultValue: 3000,
+    dest: "port",
     help: "the port to connect to on the server. Can be defined on the server arg via server:port",
 });
 
@@ -50,9 +50,9 @@ parser.addArgument(["-w", "--password"], {
 
 parser.addArgument(["-r", "--session"], {
     action: "store",
+    defaultValue: "*",
     dest: "session",
     help: "the requested game session you want to play on the server",
-    defaultValue: "*",
 });
 
 parser.addArgument(["--gameSettings"], {

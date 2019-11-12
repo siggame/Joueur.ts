@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import * as chalk from "chalk";
 import { BaseAI, setAISettings } from "./base-ai";
 import { BaseGame } from "./base-game";
 import { client } from "./client";
@@ -46,8 +46,7 @@ export async function run(args: {
         await client.connect(args.server, Number(args.port), {
             printIO: args.printIO,
         });
-    }
-    catch (err) {
+    } catch (err) {
         return handleError(
             ErrorCode.COULD_NOT_CONNECT,
             err,
@@ -62,8 +61,7 @@ export async function run(args: {
     try {
         // the game directory should export 1 variable `namespace`s
         imported = await import(`../games/${kebabCase(gameName)}`);
-    }
-    catch (err) {
+    } catch (err) {
         return handleError(
             ErrorCode.GAME_NOT_FOUND,
             err,
@@ -93,8 +91,7 @@ export async function run(args: {
     let game: BaseGame | undefined;
     try {
         game = new gameNamespace.Game();
-    }
-    catch (err) {
+    } catch (err) {
         return handleError(
             ErrorCode.REFLECTION_FAILED,
             err,
@@ -105,8 +102,7 @@ export async function run(args: {
     let ai: BaseAI | undefined;
     try {
         ai = new gameNamespace.AI(game);
-    }
-    catch (err) {
+    } catch (err) {
         return handleError(
             ErrorCode.REFLECTION_FAILED,
             err,
@@ -124,15 +120,15 @@ export async function run(args: {
     setAISettings(ai, args.aiSettings || "");
 
     client.send("play", {
-        gameName,
-        password: args.password,
-        requestedSession: args.session,
         clientType: "TypeScript",
-        playerName: args.playerName
-                 || ai.getName()
-                 || "TypeScript Player",
-        playerIndex: args.index,
+        gameName,
         gameSettings: args.gameSettings,
+        password: args.password,
+        playerIndex: args.index,
+        playerName: args.playerName
+            || ai.getName()
+            || "TypeScript Player",
+        requestedSession: args.session,
     });
 
     const lobbyData = await client.waitForEvent("lobbied");
@@ -160,8 +156,7 @@ export async function run(args: {
     try {
         await ai.start();
         await ai.gameUpdated();
-    }
-    catch (err) {
+    } catch (err) {
         handleError(
             ErrorCode.AI_ERRORED,
             err,

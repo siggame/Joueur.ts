@@ -14,11 +14,6 @@
         "baseUrl": "./",
     },
     "include": [
-        "node_modules/@types/**/*.d.ts",
-        "joueur/**/*.ts",
-        "joueur/**/*.d.ts",
-        "games/**/*.ts",
-        "games/**/*.d.ts",
-        "index.ts"
+        "src/**/*.ts",
     ]
 }
