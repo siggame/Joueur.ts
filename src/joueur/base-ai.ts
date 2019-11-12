@@ -22,16 +22,6 @@ export function setAISettings(ai: BaseAI, aiSettings: string): void {
  * The base interactions all AIs require to work on any game
  */
 export class BaseAI {
-    /**
-     * A static method to get the name of the player for this AI before
-     * gameplay starts.
-     * @returns A string of their name.
-     */
-    public getName(): string {
-         // Intended to be overridden by the AI class
-        return "TypeScript Player";
-    }
-
     /** The base game this AI is player */
     public readonly game!: BaseGame;
 
@@ -48,6 +38,16 @@ export class BaseAI {
      */
     public constructor(game: BaseGame) {
         this.game = game;
+    }
+
+    /**
+     * A static method to get the name of the player for this AI before
+     * gameplay starts.
+     * @returns A string of their name.
+     */
+    public getName(): string {
+         // Intended to be overridden by the AI class
+        return "TypeScript Player";
     }
 
     /**

@@ -1,6 +1,6 @@
 import {
-    NamedEvent, LobbiedEvent, RanEvent, ClientEvent, ServerEvent, StartEvent,
-    OrderEvent, DeltaEvent, InvalidEvent, FatalEvent, OverEvent,
+    ClientEvent, DeltaEvent, FatalEvent, InvalidEvent, LobbiedEvent, NamedEvent,
+    OrderEvent, OverEvent, RanEvent, ServerEvent, StartEvent,
 } from "@cadre/ts-utils/cadre";
 import * as chalk from "chalk";
 import { Socket } from "net";
@@ -125,9 +125,9 @@ export class Client {
     public send<T extends ClientEvent>(event: T["event"], data: T["data"]): void {
         this.sendRaw(
             JSON.stringify({
-                sentTime: (new Date()).getTime(),
-                event,
                 data: Serializer.serialize(data as {}),
+                event,
+                sentTime: (new Date()).getTime(),
             }) + EOT_CHAR,
         );
     }
@@ -144,9 +144,9 @@ export class Client {
         [key: string]: any;
     }): Promise<any> {
         this.send("run", {
+            args,
             caller,
             functionName,
-            args,
         });
 
         const ranData = await this.waitForEvent("ran");
@@ -186,8 +186,7 @@ export class Client {
                 this.socket.removeAllListeners("error");
 
                 this.socket.destroy();
-            }
-            catch (err) {
+            } catch (err) {
                 // Ignore errors on disconnecting; as this should only happen
                 // during times we don't care about error, such as handleError()
             }
@@ -219,8 +218,7 @@ export class Client {
 
         try {
             this.socket.write(str);
-        }
-        catch (err) {
+        } catch (err) {
             handleError(
                 ErrorCode.DISCONNECTED_UNEXPECTEDLY,
                 err,
@@ -248,8 +246,7 @@ export class Client {
             let parsed: any;
             try {
                 parsed = JSON.parse(sent);
-            }
-            catch (err) {
+            } catch (err) {
                 handleError(ErrorCode.MALFORMED_JSON, err, `Error parsing json: '${sent}'.`);
             }
 
@@ -323,16 +320,14 @@ export class Client {
             const args: any[] = Serializer.deSerialize(data.args, this.game!);
             try {
                 returned = await aiOrderCallback.apply(this.ai, args);
-            }
-            catch (err) {
+            } catch (err) {
                 handleError(
                     ErrorCode.AI_ERRORED,
                     err,
                     `AI errored in order '${data.name}'.`,
                 );
             }
-        }
-        else {
+        } else {
             handleError(
                 ErrorCode.REFLECTION_FAILED,
                 `Could not find AI order function '${data.name}'.`,
@@ -354,8 +349,7 @@ export class Client {
     private async autoHandleDelta(delta: DeltaEvent["data"]): Promise<void> {
         try {
             this.gameManager!.applyDeltaState(delta);
-        }
-        catch (err) {
+        } catch (err) {
             handleError(
                 ErrorCode.DELTA_MERGE_FAILURE,
                 err,
@@ -366,8 +360,7 @@ export class Client {
         if (this.ai!.player) { // The AI is ready for updates
             try {
                 await this.ai!.gameUpdated();
-            }
-            catch (err) {
+            } catch (err) {
                 handleError(
                     ErrorCode.AI_ERRORED,
                     err,
@@ -386,8 +379,7 @@ export class Client {
     private autoHandleInvalid(data: InvalidEvent["data"]): void {
         try {
             this.ai!.invalid(data.message);
-        }
-        catch (err) {
+        } catch (err) {
             handleError(ErrorCode.AI_ERRORED, err, "AI errored in invalid().");
         }
     }
@@ -421,8 +413,7 @@ export class Client {
 
         try {
             this.ai!.ended(won, reason);
-        }
-        catch (err) {
+        } catch (err) {
             handleError(ErrorCode.AI_ERRORED, err, "AI errored in ended().");
         }
 
