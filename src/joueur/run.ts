@@ -132,12 +132,11 @@ export async function run(args: {
     });
 
     const lobbyData = await client.waitForEvent("lobbied");
-    lobbyData.gameVersion = "lolwut";
 
     if (lobbyData.gameVersion !== gameNamespace.gameVersion) {
         // tslint:disable-next-line:no-console
         console.warn(chalk.yellow(
-`Warning! Game versions do not match.
+`WARNING: Game versions do not match.
 -> Your local game version is:     ${gameNamespace.gameVersion.substr(0, 8)}
 -> Game Server's game version is:  ${lobbyData.gameVersion.substr(0, 8)}
 
