@@ -4,9 +4,9 @@
 
 This is the client for the [Cadre][cadre] AI framework. It can play multiple different games, though you will probably only be interested in one at a time.
 
-In general, try to stay out of the `joueur/` folder, it does most of the heavy lifting to play on our game servers.
+In general, try to stay out of the `src/joueur/` folder, it does most of the heavy lifting to play on our game servers.
 
-Each AI, and the game objects it manipulates are all in `games/game-name/`, with your very own AI living in `games/game-name/ai.ts` for you to make smarter.
+Each AI, and the game objects it manipulates are all in `src/games/game-name/`, with your very own AI living in `src/games/game-name/ai.ts` for you to make smarter.
 
 ## How to Run
 
