@@ -13,6 +13,11 @@ def run(*args, **kwargs):
     if error_code != 0: # an error happened
         sys.exit(error_code)
 
+def ensure_clean_dir(dirs):
+    if os.path.isdir(dirs):
+        shutil.rmtree(dirs)
+    os.makedirs(dirs)
+
 def splitall(path):
     allparts = []
     while 1:
@@ -53,7 +58,8 @@ def copy_module_files(base_path, joueur=False):
  * The full game rules for {game_name} can be found on <a href="https://github.com/siggame/Cadre/blob/master/Games/{game_name}/rules.md">GitHub</a>.
  *
  * Additional materials, such as the <a href="https://github.com/siggame/Cadre/blob/master/Games/{game_name}/story.md">story</a> and <a href="https://github.com/siggame/Cadre/blob/master/Games/{game_name}/creer.yaml">game template</a> can be found on <a href="https://github.com/siggame/Cadre/blob/master/Games/{game_name}/">GitHub</a> as well.
- """.format(game_name=game_name)
+ *
+ *""".format(game_name=game_name)
 
                 with open(os.path.join(local_path, filename), 'w+') as file:
                     file.write("""
@@ -85,12 +91,12 @@ lower_game_name = game_name[0].lower() + game_name[1:]
 if os.path.isdir("./output"):
     shutil.rmtree("./output")
 
-#copy_tree("../joueur/", "./joueur/")
-#copy_tree("../games/", "./games/")
+copy_tree("../src/joueur/", "./src/joueur/")
+copy_tree("../src/games/", "./src/games/")
 copyfile("../tsconfig.json", "./tsconfig.json")
 
-copy_module_files("../games")
-copy_module_files("../joueur", True)
+copy_module_files("../src/games")
+copy_module_files("../src/joueur", True)
 
 """
 with open("../README.md", "r") as f:
@@ -103,6 +109,10 @@ with open("README.md", "w+") as f:
 """
 
 run(["npm install"], shell=True)
+
+output_path="./output"
+ensure_clean_dir(output_path)
+
 run(["npm run docs"], shell=True)
 copyfile("./favicon.ico", "./output/favicon.ico")
 
@@ -131,7 +141,6 @@ for root, dirnames, filenames in os.walk(output_path):
 # cleanup files we made
 os.remove("tsconfig.json")
 shutil.rmtree("./node_modules")
-shutil.rmtree("./joueur")
-shutil.rmtree("./games")
+shutil.rmtree("./src")
 
 print("TypeScript docs generated.")
