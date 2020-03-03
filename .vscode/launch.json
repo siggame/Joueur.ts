@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/index.ts",
             "args": [
-                "GAME-NAME"
+                "Chess"
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
