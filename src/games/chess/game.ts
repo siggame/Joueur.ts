@@ -10,9 +10,6 @@ import { BaseGame } from "../../joueur/base-game";
 import { GameObject } from "./game-object";
 import { Player } from "./player";
 
-// <<-- Creer-Merge: imports -->>
-// any additional imports you want can be placed here safely between creer runs
-// <<-- /Creer-Merge: imports -->>
 
 /**
  * The traditional 8x8 chess board with pieces.
@@ -48,7 +45,4 @@ export class Game extends BaseGame {
      */
     public readonly session!: string;
 
-    // <<-- Creer-Merge: functions -->>
-    // any additional functions you want to add to this class can be preserved here
-    // <<-- /Creer-Merge: functions -->>
 }

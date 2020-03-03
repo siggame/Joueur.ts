@@ -8,9 +8,6 @@
 
 import { GameObject } from "./game-object";
 
-// <<-- Creer-Merge: imports -->>
-// any additional imports you want can be placed here safely between creer runs
-// <<-- /Creer-Merge: imports -->>
 
 /**
  * A player in this game. Every AI controls one player.
@@ -64,7 +61,4 @@ export class Player extends GameObject {
      */
     public readonly won!: boolean;
 
-    // <<-- Creer-Merge: functions -->>
-    // any additional functions you want to add to this class can be preserved here
-    // <<-- /Creer-Merge: functions -->>
 }

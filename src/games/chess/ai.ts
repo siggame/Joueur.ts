@@ -4,10 +4,6 @@ import { BaseAI } from "../../joueur/base-ai";
 import { Game } from "./game";
 import { Player } from "./player";
 
-// <<-- Creer-Merge: imports -->>
-// any additional imports you want can be required here safely between creer runs
-// <<-- /Creer-Merge: imports -->>
-
 /**
  * This is the class to play the Chess game.
  * This is where you should build your AI.
@@ -29,9 +25,7 @@ export class AI extends BaseAI {
      * @returns A string for the name of your player.
      */
     public getName(): string {
-        // <<-- Creer-Merge: getName -->>
         return "Chess JavaScript Player";
-        // <<-- /Creer-Merge: getName -->>
     }
 
     /**
@@ -39,18 +33,14 @@ export class AI extends BaseAI {
      * You can initialize your AI here.
      */
     public async start(): Promise<void> {
-        // <<-- Creer-Merge: start -->>
         // pass
-        // <<-- /Creer-Merge: start -->>
     }
 
     /**
      * This is called every time the game's state updates, so if you are tracking anything you can update it here.
      */
     public async gameUpdated(): Promise<void> {
-        // <<-- Creer-Merge: gameUpdated -->>
         // pass
-        // <<-- /Creer-Merge: gameUpdated -->>
     }
 
     /**
@@ -60,9 +50,7 @@ export class AI extends BaseAI {
      * @param reason The human readable string explaining why you won or lost.
      */
     public async ended(won: boolean, reason: string): Promise<void> {
-        // <<-- Creer-Merge: ended -->>
         // pass
-        // <<-- /Creer-Merge: ended -->>
     }
     /**
      * This is called every time it is this AI.player's turn to make a move.
@@ -71,13 +59,8 @@ export class AI extends BaseAI {
      * move is invalid or not properly formatted you will lose the game.
      */
     public async makeMove(): Promise<string> {
-        // <<-- Creer-Merge: makeMove -->>
         // Put your game logic here for makeMove
         return "";
-        // <<-- /Creer-Merge: makeMove -->>
     }
 
-    // <<-- Creer-Merge: functions -->>
-    // any additional functions you want to add for your AI
-    // <<-- /Creer-Merge: functions -->>
 }
