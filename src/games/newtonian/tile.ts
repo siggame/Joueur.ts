@@ -46,7 +46,7 @@ export class Tile extends GameObject {
 
     /**
      * The direction of a conveyor belt ('blank', 'north', 'east', 'south', or
-     * 'west'). blank means conveyor doesn't move.
+     * 'west'). Blank means conveyor doesn't move.
      */
     public readonly direction!: "blank" | "north" | "east" | "south" | "west";
 

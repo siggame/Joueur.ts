@@ -52,7 +52,7 @@ export class Checker extends GameObject {
      * @param x The x coordinate to move to.
      * @param y The y coordinate to move to.
      * @returns Returns the same checker that moved if the move was successful.
-     * null otherwise.
+     * Otherwise null.
      */
     public async move(x: number, y: number): Promise<Checker | undefined> {
         return this.runOnServer("move", {

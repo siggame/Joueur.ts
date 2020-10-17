@@ -13,8 +13,8 @@ import { Building } from "./building";
 // <<-- /Creer-Merge: imports -->>
 
 /**
- * A typical abandoned warehouse... that anarchists hang out in and can be
- * bribed to burn down Buildings.
+ * A typical abandoned warehouse that anarchists hang out in and can be bribed
+ * to burn down Buildings.
  */
 export class Warehouse extends Building {
 
@@ -34,7 +34,7 @@ export class Warehouse extends Building {
     /**
      * Bribes the Warehouse to light a Building on fire. This adds this
      * building's fireAdded to their fire, and then this building's exposure is
-     * increased based on the Manhatten distance between the two buildings.
+     * increased based on the Manhattan distance between the two buildings.
      * @param building The Building you want to light on fire.
      * @returns The exposure added to this Building's exposure. -1 is returned
      * if there was an error.

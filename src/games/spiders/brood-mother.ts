@@ -48,7 +48,7 @@ export class BroodMother extends Spider {
      * an egg.
      * @param spiderlingType The string name of the Spiderling class you want to
      * Spawn. Must be 'Spitter', 'Weaver', or 'Cutter'.
-     * @returns The newly spwaned Spiderling if successful. Null otherwise.
+     * @returns The newly spawned Spiderling if successful. Null otherwise.
      */
     public async spawn(
         spiderlingType: "Spitter" | "Weaver" | "Cutter",

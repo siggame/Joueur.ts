@@ -19,8 +19,8 @@ import { Unit } from "./unit";
 // <<-- /Creer-Merge: imports -->>
 
 /**
- * Collect of the most of the rarest mineral orbiting aroung the sun and
- * outcompete your competetor.
+ * Collect of the most of the rarest mineral orbiting around the sun and out-
+ * compete your competitor.
  */
 export class Game extends BaseGame {
 
@@ -64,8 +64,8 @@ export class Game extends BaseGame {
     public readonly genariumValue!: number;
 
     /**
-     * A list of all jobs. first item is corvette, second is missileboat, third
-     * is martyr, fourth is transport, and fifth is miner.
+     * A list of all jobs. The first element is corvette, second is missileboat,
+     * third is martyr, fourth is transport, and fifth is miner.
      */
     public readonly jobs!: Job[];
 

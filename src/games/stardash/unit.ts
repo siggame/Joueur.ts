@@ -48,7 +48,7 @@ export class Unit extends GameObject {
     public readonly genarium!: number;
 
     /**
-     * Tracks wheither or not the ship is dashing or Mining. If true, it cannot
+     * Tracks whether or not the ship is dashing or Mining. If true, it cannot
      * do anything else.
      */
     public readonly isBusy!: boolean;
@@ -92,7 +92,7 @@ export class Unit extends GameObject {
     public readonly rarium!: number;
 
     /**
-     * The sheild that a martyr ship has.
+     * The shield that a martyr ship has.
      */
     public readonly shield!: number;
 
@@ -131,7 +131,7 @@ export class Unit extends GameObject {
     }
 
     /**
-     * allows a miner to mine a asteroid
+     * Allows a miner to mine a asteroid.
      * @param body The object to be mined.
      * @returns True if successfully acted, false otherwise.
      */
@@ -155,7 +155,7 @@ export class Unit extends GameObject {
     }
 
     /**
-     * tells you if your ship can move to that location from were it is without
+     * Tells you if your ship can move to that location from were it is without
      * clipping the sun.
      * @param x The x position of the location you wish to arrive.
      * @param y The y position of the location you wish to arrive.

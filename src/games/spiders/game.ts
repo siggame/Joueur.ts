@@ -17,8 +17,8 @@ import { Web } from "./web";
 // <<-- /Creer-Merge: imports -->>
 
 /**
- * There's an infestation of enemy spiders challenging your queen broodmother
- * spider! Protect her and attack the other broodmother in this turn based, node
+ * There's an infestation of enemy spiders challenging your queen BroodMother
+ * spider! Protect her and attack the other BroodMother in this turn based, node
  * based, game.
  */
 export class Game extends BaseGame {
