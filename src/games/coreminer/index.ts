@@ -26,5 +26,5 @@ export const namespace: IGameNamespace = {
         Tile,
         Upgrade,
     },
-    gameVersion: "a4592bb5acb0415146605769f439a09baf3768f41cdb3c7ad9dc971f42c4d96e",
+    gameVersion: "b559778acd8e4c689b8d028ca6cc154714ce79c39b09cd6d171b50faf88ef747",
 };
