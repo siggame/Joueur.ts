@@ -150,7 +150,7 @@ export class Tile extends GameObject {
      */
     public isPathable(): boolean {
         // <<-- Creer-Merge: is-pathable-builtin -->>
-        return this.dirt + this.ore > 0;
+        return this.dirt + this.ore <= 0;
         // <<-- /Creer-Merge: is-pathable-builtin -->>
     }
 
