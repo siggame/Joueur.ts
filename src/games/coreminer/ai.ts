@@ -73,7 +73,60 @@ export class AI extends BaseAI {
     public async runTurn(): Promise<boolean> {
         // <<-- Creer-Merge: runTurn -->>
         // Put your game logic here for runTurn
-        return false;
+
+        // if we have no miners and can afford one, spawn one
+        if (this.player.miners.length < 1 && this.game.spawnPrice <= this.player.money) {
+            this.player.spawnMiner();
+        }
+
+        // for each of our miners
+        for (const miner of this.player.miners) {
+            // if miner doesn't exist skip
+            if (!miner || !miner.tile) { continue; }
+
+            // if on base move over
+            if (miner.tile.isBase) {
+                if (miner.tile.tileEast) {
+                    miner.move(miner.tile.tileEast);
+                } else if (miner.tile.tileWest) {
+                    miner.move(miner.tile.tileWest);
+                }
+            }
+
+            // Sel all materials
+            const sellTile = this.game.getTileAt(this.player.baseTile.x, miner.tile.y);
+            if (sellTile && sellTile.owner === this.player) {
+                miner.dump(sellTile, "dirt", -1);
+                miner.dump(sellTile, "ore", -1);
+            }
+
+            const eastTile = miner.tile.tileEast;
+            const westTile = miner.tile.tileWest;
+
+            // Mine east and west tile, hopper side first
+            if (eastTile && eastTile.x === this.player.baseTile.x) {
+                miner.mine(eastTile, -1);
+                if (westTile) {
+                    miner.mine(westTile, -1);
+                }
+            } else {
+                if (westTile) {
+                    miner.mine(westTile, -1);
+                }
+                if (eastTile) {
+                    miner.mine(eastTile, -1);
+                }
+            }
+
+            // if we mined both sides mine down
+            if ((eastTile && eastTile.ore + eastTile.dirt === 0) &&
+                (westTile && westTile.ore + westTile.dirt === 0) &&
+                miner.tile.tileSouth) {
+                miner.mine(miner.tile.tileSouth, -1);
+            }
+        }
+
+        return true;
         // <<-- /Creer-Merge: runTurn -->>
     }
 
