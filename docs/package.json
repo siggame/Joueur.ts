@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "typedoc": "0.14.2",
+    "typedoc": "0.24.5",
     "typedoc-plugin-external-module-name": "2.0.0",
     "typedoc-plugin-internal-external": "2.0.1"
   },
